@@ -1,0 +1,32 @@
+<html>
+    <script>
+     
+        let ages = [20,30];
+        console.log('ages ',ages[0], ' ',ages[1]);
+        /*
+        let a = ages[0];
+        let b = ages[1];*/
+        let [a,b] = ages;
+        console.log('a is ', a);
+        console.log('b is ', b);
+
+        let c = 40;
+        let d = 50;
+
+        let temp = c;
+        c = d;
+        d = temp;
+        console.log('c is ', c);
+        console.log('d is ', d);
+
+        [d,c] = [c,d];
+        console.log('c is ', c);
+        console.log('d is ', d);
+
+        let arr = [1,2,3,4,5];
+        let [first, second, ...rest] = arr;
+        console.log('first is ', first);
+        console.log('second is ', second);
+        console.log('rest is ', rest);
+    </script>
+</html>

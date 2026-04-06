@@ -1,0 +1,80 @@
+<html>
+    <script>
+        let obj = {
+
+            toString()
+            {
+                console.log('toString called');
+                return "hello";
+            },
+            valueOf()
+            {
+                console.log('valueOf called');
+                return false;
+            }
+        };
+        console.log('obj ', obj.toString());
+        console.log('obj ', obj.valueOf());
+
+        /*
+        valueOf
+        */
+        console.log('+obj ', +obj);
+        /*
+        valueOf 
+        false->boolean
+        +false ->0
+        */
+
+        obj = {
+
+            toString()
+            {
+                console.log('toString called');
+                return "200";
+            },
+            /*    
+            valueOf()
+            {
+                console.log('valueOf called');
+                return false;
+            }*/
+        };
+        console.log('+obj ', +obj);
+        //
+
+        obj = {
+
+            toString()
+            {
+                console.log('toString called');
+                return "200";
+            },
+            
+            valueOf()
+            {
+                console.log('valueOf called');
+                return new Date();
+            }
+        };
+        console.log('+obj ', +obj);
+        obj = {
+
+            toString()
+            {
+                console.log('toString called');
+                return {};
+            },
+            
+            valueOf()
+            {
+                console.log('valueOf called');
+                return new Date();
+            }
+        };
+        //console.log('+obj ', +obj);
+        let date =new Date();
+        console.log('+date ', date.toString());
+        console.log('+date ', +date);
+    </script>
+</html>

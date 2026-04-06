@@ -1,0 +1,27 @@
+<html>
+    <script>
+        let str1 = "Hello \"Good Morning\" 'hi' "
+                    + "\r\nAnother line";
+        console.log('str1 length ',str1.length);
+        let str2 = 'Hello "Godo morning"';
+
+        console.log('str1 is ',str1);
+        console.log('str2 is ',str2);
+
+        console.log('typeof str1 ',typeof str1  );
+
+        let price = 10;
+        let qty = 5;
+        let total = price * qty;
+        let str3 = "Price is " + price + " and qty is " + qty;
+        console.log('Total is ', total);
+
+        let str4 = `Price is ${price} and qty is ${qty}
+        Total is ${total}
+        `;
+        console.log('str4 is ',str4);
+
+        console.log(`\n.length `, `\n`.length);
+        console.log(`\n.length `, String.raw`\n`.length);
+    </script>
+</html>

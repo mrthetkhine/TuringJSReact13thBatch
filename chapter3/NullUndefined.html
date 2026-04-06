@@ -1,0 +1,26 @@
+<html>
+    <script>
+        let a; 
+        console.log('a is ',a);
+        console.log('typeof a ',typeof a);
+        let obj = {
+            name :"John"
+        };
+        console.log('Name ',obj.name);
+        console.log('Age ',obj.age);
+
+        let c = null;
+        console.log('c is ',c);
+        console.log('typeof c ',typeof c);
+
+        let name = Symbol('name');
+        console.log('name is ',name);
+        console.log('typeof name ',typeof name);
+
+        let obj2 = {
+            [name] : 'John'
+        }
+        console.log('Name ',obj2[name]);
+        console.log('typeof obj2 ',typeof obj2);
+    </script>
+</html>
