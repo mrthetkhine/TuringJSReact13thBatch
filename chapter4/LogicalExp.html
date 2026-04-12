@@ -1,0 +1,46 @@
+<html>
+    <script>
+        /*
+            &&
+            1 1 ->1
+            1 0 ->0
+            0 1 ->0
+            0 0 ->0
+        */
+       /*
+        if LHS truthy -> return RHS
+        if LHS falsy -> return LHS
+       */
+
+        console.log('true && true ', true && true);
+        console.log('true && false ', true && false);
+        console.log('false && true ', false && true);
+        console.log('false && false ', false && false);
+
+        console.log('true && "hello" ', true && "hello");
+        console.log('null && "hello" ', null && "hello");
+        console.log('0 && false ', 0 && false);
+
+         /*
+            ||
+            1 1 ->1
+            1 0 ->1
+            0 1 ->1
+            0 0 ->0
+        */
+       /*
+            if LHS truthy -> return LHS 
+            if LHS falsy -> return RHS
+        */
+        console.log('true || true ', true || true);
+        console.log('true || false ', true || false);
+        console.log('false || true ', false || true);
+        console.log('false || false ', false || false);
+
+        console.log('true || "hello" ', true || "hello");
+        console.log('null || "hello" ', null || "hello");
+        console.log('0 || false ', 0 || false);
+
+      
+    </script>    
+</html>

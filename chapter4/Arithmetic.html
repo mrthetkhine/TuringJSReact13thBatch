@@ -1,0 +1,67 @@
+<html>
+    <script>
+     
+        let str = 'Hello' + 123;//string concatenation           
+        console.log('str is ', str);
+
+        let c = false + 20;//arithmetic
+        //false ->0
+        // 0 + 20 -> 20
+        console.log('c is ', c);
+
+        c = '3' -'1';
+        // '3' -> 3
+        console.log('c is ', c);
+
+        let obj ={
+            valueOf()
+            {
+                console.log('valueOf is called');
+                return '100';
+            }
+
+        }
+        c = obj + 50;
+        /*
+            obj to primitive -> valueOf() -> '100'
+            '100'+50
+        */
+        console.log('C is ',c);
+        c = 10 + null;
+        console.log('c is ', c);
+
+         c = 10 + undefined;
+        console.log('c is ', c);
+
+        c = 1 + 2 + " blind mice" 
+        console.log('c is ', c);
+
+         c = " blind mice"  +1 + 2 ;
+        console.log('c is ', c);
+
+        c = + '123';
+        console.log('c is ', c);
+
+        let a = 10;
+        c = ++ a;
+        console.log('c is ', c);
+        console.log('a is ', a);
+
+       c = a ++;
+       // c = a;
+       //a ++;
+       console.log('c is ', c);
+       console.log('a is ', a);
+
+       obj = {
+        valueOf()
+        {
+            console.log('valueOf is called');
+            return '100';
+        }
+       }
+       ++ obj;
+       console.log('obj is ', obj);
+       console.log('typeof obj ',typeof obj);
+    </script>
+</html>
