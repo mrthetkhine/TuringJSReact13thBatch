@@ -1,0 +1,25 @@
+<html>
+    <script>
+        console.log('!true ', !true);
+        console.log('!false ', !false);
+        console.log('!"hello" ', !"hello");
+
+        let a = 10;//copy semantics
+        let b = a;//copy semnatics
+
+        let obj = {
+            value: 10
+        };
+        let obj2 = obj;//reference semantics
+        obj2.value ++;
+        console.log('obj ', obj);
+        console.log('obj2 ', obj2);
+
+        let c = 10;
+        c += 5;
+        console.log('c ', c);
+        let str = "console.log('hello'),1+2";
+        console.log('eval ', eval(str));  
+      
+    </script>    
+</html>

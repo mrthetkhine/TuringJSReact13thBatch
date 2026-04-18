@@ -1,0 +1,31 @@
+<html>
+
+   
+    <script>
+        
+        let counter =10;//initialization
+
+         do
+         {
+            console.log('Hello ',counter);
+            counter++; //increment step
+         }while( counter < 5)//condition
+
+        let num = parseInt(Math.random() * 10)+1; //1-10
+        let guess;
+        do 
+        {
+            guess = +window.prompt('guess a number between 1 and 10');
+            if(guess < num)
+            {
+                console.log('too low');
+            }
+            else if(guess > num)
+            {
+                console.log('too high');
+            }
+           
+        }while(num != guess);
+        console.log('you guessed it');
+    </script>    
+</html>

@@ -1,0 +1,51 @@
+<html>
+
+   
+    <script>
+        let myan = +window.prompt('enter myan score');
+        let eng = +window.prompt('enter eng score');
+        let math = +window.prompt('enter math score');
+        
+        /*
+        if(myan >= 40)
+        {
+            if(eng >= 40)
+            {
+                if(math >= 40)
+                {
+                    console.log('passed');
+                }
+                else
+                {
+                    console.log('failed');
+                }
+
+            }
+            else
+            {
+                console.log('failed');
+            } 
+        }
+        else
+        {
+            console.log('failed');
+        }
+        */
+       if( myan >= 40 && eng >= 40 && math >= 40)
+       {
+            if( myan >= 80 || eng >= 80 || math >= 80)
+            {
+                console.log('passed with distinction');
+            }
+            else
+            {
+                console.log('passed');
+            }
+            
+       }
+       else
+       {
+            console.log('failed');
+       }
+    </script>    
+</html>

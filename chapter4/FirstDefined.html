@@ -1,0 +1,33 @@
+<html>
+
+    <a href="javascript:alert('Hello')">Click me</a>
+    <a href="javascript:void(document.body.style.backgroundColor='green');">
+        Click here for green background
+    </a>
+    <script>
+        function config(x)
+        {
+            //x = x || 10;
+            x = x ?? 10;
+            console.log('x is ', x);
+        }
+        config();
+
+        let obj = {
+            name: 'John',
+            age: 30,
+            address: 'Somewhere'
+        };
+        delete obj.address;
+        console.log('obj ', obj);
+
+        let c = void(100);
+        console.log('c is ', c);
+
+        let a,b;
+        c = (a = 10, b = 20, 30);
+        console.log('a is ', a);
+        console.log('b is ', b);
+        console.log('c is ', c);
+    </script>    
+</html>
