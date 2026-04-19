@@ -1,0 +1,50 @@
+<html>
+
+   
+    <script>
+        let arr =[1,2,3,4,5];
+
+        console.log('Arr[0] ',arr[0]);
+        console.log('length ',arr.length);
+
+        arr[0]= 100;
+        /*
+        for(let i=0;i < arr.length;i++)
+        {
+            console.log(`arr [${i}] ${arr[i]}`);
+        }
+        */
+       for(const item of arr)//item = arr[i];//copy semantics
+       {
+            console.log('Item ',item);
+            //item *= 2;
+       }
+       console.log('Arr ',arr);
+
+       let obj ={
+        x : 100,
+        y : 200,
+       };
+       console.log('Keys ',Object.keys(obj));
+       for(const key of Object.keys(obj))
+       {
+            console.log(`key ${key} value ${obj[key]}`);
+            obj[key] *= 2;
+       }
+       console.log('Obj ',obj);
+
+       console.log('Object.values(obj) ',Object.values(obj));
+       for(const value of Object.values(obj))
+       {
+            console.log(`value ${value}`);
+       }
+       for(const key in obj)
+       {
+        console.log('Key ',key, ' value ',obj[key]);
+       }
+       for(const letter of 'Hello')
+       {
+        console.log('letter ',letter);
+       }
+    </script>    
+</html>

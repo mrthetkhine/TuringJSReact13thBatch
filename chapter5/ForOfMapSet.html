@@ -1,0 +1,26 @@
+<html>
+
+   
+    <script>
+        let str ="Hello";
+        let set = new Set(str);
+        console.log('set ',set);
+        
+        for(const w of set)
+        {
+          console.log('w ',w);
+        }
+        let m = new Map([[1, "one"]]);
+
+        let obj = {
+          x : 100,
+          y : 200
+        }
+        console.log('Object.entries  ',Object.entries(obj));
+        for(const [key,value] of m)
+        {
+            console.log('key ',key);
+            console.log('value ',value);
+        }
+    </script>    
+</html>

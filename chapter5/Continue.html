@@ -1,0 +1,30 @@
+<html>
+
+
+  <script>
+
+    for(let i=0;i< 10;i++)
+    {
+      if(i==5)
+      {
+        continue;
+      }
+      console.log('i is ',i);
+    }
+    function hello()
+    {
+      for(let i=0;i< 10;i++)
+      {
+        if(i==5)
+        {
+          return;
+        }
+        console.log('Hello i ',i);
+      }
+      console.log('At the end of loop');
+    }
+    hello();
+    console.log('after func');
+  </script>
+
+</html>
