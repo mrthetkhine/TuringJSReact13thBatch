@@ -16,11 +16,12 @@
     **        i= 7, j = 2
     *         i= 8, j = 1
 
+  
     */
    for(let i=0;i< 9;i++)
   {
     str ='';
-    for(let j=0; j < 5-i ;j++)
+    for(let j=0; j < (i <= 4?i+1:9-i  ) ;j++)
     {
         str += '*';
     }

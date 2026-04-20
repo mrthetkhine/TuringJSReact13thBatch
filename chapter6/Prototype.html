@@ -1,0 +1,33 @@
+<html>
+
+
+  <script>
+ 
+    let grandParent = {
+      y : 200,
+      items: [100]
+    }
+    let parent = {
+      x : 100
+    };
+    parent.__proto__ = grandParent;
+    let obj = Object.create(parent);
+    console.log('obj ',obj);
+    
+    console.log('obj.x ',obj.x);
+    console.log('obj.y ',obj.y);
+
+    obj.y = 300;
+    console.log('obj ',obj);
+    console.log('grandParent ',grandParent);
+
+    obj.items.push(200);
+    console.log('obj.items ',obj.items);
+    console.log('grandParent ',grandParent.items);
+
+    obj.items = [300];
+    console.log('obj.items ',obj.items);
+    console.log('grandParent ',grandParent.items);
+  </script>
+ 
+</html>

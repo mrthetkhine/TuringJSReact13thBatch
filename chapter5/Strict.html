@@ -1,0 +1,50 @@
+<html>
+
+
+  <script>
+    'use strict';
+    //eval = "hello";
+    /*
+    function div(a,a)
+    {
+
+    }
+    */
+    //var top = 10;
+    //console.log('top ',top==10);
+     let obj ={
+      name : 'John',                     
+      age : 30,
+      city : 'New York',
+      age :100,
+      display()
+      {
+        console.log('Name ',this);
+      }
+    };
+    //obj.display();
+    /*
+   
+    with(obj)
+    {
+      name ='Something';//obj.name
+      age = 100;//obj.age
+      another ="Hello";
+    }*/                 
+    // another= 100; 
+    let fun = obj.display;
+    //fun();
+    //window.top  =  "Hello";
+    //eval("var a=100; ");
+    //console.log('A ',a);
+    //delete fun;
+    let a = 0x10;
+    function hello()
+    {
+     
+      console.log('Argument ',arguments);
+    }
+    hello();
+  </script>
+ 
+</html>
