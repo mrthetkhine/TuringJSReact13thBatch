@@ -1,0 +1,51 @@
+<html>
+
+
+  <script>
+ 
+    let a = {
+      x: 100,
+    }
+    let b = {
+      y : 200,
+      z : 300
+    };
+    for( const prop in b)
+    {
+      a[prop] = b[prop];
+    }
+    console.log('a ',a);
+
+    let source = {
+      a : 100,
+      b : 200
+    };
+    let target = {
+      a : 300,
+      c : 400
+    };
+    let result = Object.assign(target,source);
+    console.log('result ',result);
+    console.log('target ',target);
+    
+    let first = {
+      a :100,
+      b :200,
+    }
+    let second = {
+      b :300,
+      c :400,
+      items: [100],
+    }
+    let merged = {...first,...second};   
+    //
+    //merges.items =second.items;
+    console.log('first ',first);
+    console.log('merged ',merged);
+
+    merged.items.push(200);
+    console.log('merged ',merged.items);
+    console.log('second ',second.items);
+  </script>
+ 
+</html>

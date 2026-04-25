@@ -1,0 +1,38 @@
+<html>
+
+
+  <script>
+ 
+    let obj = {
+      name : 'Jack',
+      age:30,
+      address1 : {
+        city : "YGN"
+      }
+    };
+    console.log('obj ',obj);
+    console.log('obj.name ',obj.name);
+    console.log('obj.age ',obj.age);
+    console.log('obj.address ',obj.address);
+    console.log('obj.address.city ',obj.address?.city);
+
+    delete obj.name;
+    console.log('obj ',obj);  
+
+    console.log('name in obj ','name' in obj );
+    console.log('age in obj ','age' in obj );
+    console.log('toString in obj ','toString' in obj );
+    console.log('hasOwnProperty in obj ',obj.hasOwnProperty('age') );
+    console.log('hasOwnProperty toString obj ',obj.hasOwnProperty('toString') );
+    //console.log('obj["name"] ',obj['name']);
+
+    for(const prop in obj){
+      console.log('prop ',prop , ' value ',obj[prop]);
+      
+    }
+    console.log('Object.keys ',Object.keys(obj));
+    console.log('Object.values ',Object.values(obj));
+    console.log('Object.entries ',Object.entries(obj));
+  </script>
+ 
+</html>

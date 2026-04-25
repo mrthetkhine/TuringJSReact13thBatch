@@ -1,0 +1,48 @@
+<html>
+
+
+  <script>
+ 
+    
+    let second = {
+      b :300,
+      c :400,
+      items: [100],
+      display : function(){
+        console.log('display ',this.b,this.c);
+      }
+    }
+    let  clone = {
+      ...second
+    }
+    clone.items.push(200);
+    console.log('clone ',clone);
+    console.log('second ',second);
+
+    let str = JSON.stringify(second);
+    console.log('str ',str);
+
+    let obj =JSON.parse(str);
+    console.log('obj ',obj);
+
+    obj.items.push(300);
+    console.log('obj ',obj);
+    console.log('second ',second);
+
+    let user = {
+      name : 'Jack',
+      age : 30,
+      secret :'Something', 
+      toJSON : function(){
+        console.log('toJSON ',this);
+        return {
+          username : this.name,
+          age : this.age
+        }
+      }
+    }
+    str = JSON.stringify(user);
+    console.log('str ',str);
+  </script>
+ 
+</html>

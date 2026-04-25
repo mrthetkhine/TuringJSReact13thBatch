@@ -1,0 +1,22 @@
+<html>
+
+
+  <script>
+ 
+    let items = [20,30,40,true,'hello'];
+    items[0] = 50;
+    console.log('items ',items);
+    console.log('items[0] ',items[0]);
+
+    console.log('items.length ',items.length);
+    items['0'] = 60;
+    items['-1'] = 160;
+    items['hello'] = 'world';
+    console.log('items ',items);
+
+    items[100] = 1000;
+    console.log('items ',items);
+    console.log('items.length ',items.length);
+  </script>
+ 
+</html>

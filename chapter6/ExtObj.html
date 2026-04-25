@@ -1,0 +1,30 @@
+<html>
+
+
+  <script>
+ 
+    
+    let name = 'Jack';
+    let age = 30;
+    let obj = {
+      name,
+      age
+    }
+    console.log('obj ',obj);
+    const extension = Symbol("my extension symbol");
+    obj[extension] = "This is extension";
+    console.log('obj ',obj);
+    const another = Symbol("my extension symbol");
+    obj[another] = "This is another extension";
+    console.log('obj ',obj);
+
+    let square = {
+      side: 10, 
+      area() { 
+        return this.side * this.side; 
+      }, 
+    };
+    console.log('square ',square.area());
+  </script>
+ 
+</html>

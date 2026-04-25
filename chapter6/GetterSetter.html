@@ -1,0 +1,50 @@
+<html>
+
+
+  <script>
+ 
+    
+    let circle ={
+      radius: 10,
+      area()
+      {
+        return Math.PI * this.radius * this.radius;
+      }
+    }
+    console.log('circle ',circle.area());
+
+    let item = {
+      price :100,
+      qty :2, 
+      //getter
+      get total(){
+        return this.price * this.qty;
+      }
+    }
+    console.log('item ',item.total);
+
+    let user ={
+      _age: 20,
+      get age(){
+        console.log('Getting age');
+        return this._age;
+      },
+      set age(newValue)
+      {
+        console.log('Setting age ',newValue);
+        if(newValue < 0 || newValue > 100)
+        {
+          console.log('Invalid age');
+          return;
+        }
+        this._age = newValue;
+      }
+    }
+    user.age = 220;
+    console.log('User ',user);
+
+    user.age = 30;
+    console.log('User ',user);
+  </script>
+ 
+</html>
