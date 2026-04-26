@@ -1,0 +1,28 @@
+<html>
+
+
+  <script>
+ 
+    let items = [1,2,3,-4,5];
+    let index = items.findIndex(item=>item < 0);
+    console.log('index ',index);
+
+    let item = items.find(item=>item < 0);
+    console.log('item ',item);
+
+    items = [1,2,3,-4,5];
+    console.log('items ',items.every(item=>item > 0));
+    console.log('items some ',items.some(item=>item > 0));
+
+    //let arr2 = items.map(x=>[x,x*x]).flat();
+    let arr2 = items.flatMap(x=>[x,x*x]);
+    console.log('arr2 ',arr2);
+
+    let arr3 = [1,2,3];
+    let arr4 = [4,5,6];
+    //let arr5 = arr3.concat(arr4);
+    let arr5 = [...arr3,...arr4];
+    console.log('arr5 ',arr5);
+  </script>
+ 
+</html>

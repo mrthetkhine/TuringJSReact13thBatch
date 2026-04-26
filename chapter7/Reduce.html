@@ -1,0 +1,52 @@
+<html>
+
+
+  <script>
+ 
+    let items = [1,2,3,-4,5];
+    console.log('items ',items);
+    let total = items.reduce(function(a,b){
+      console.log('a ',a,' b ',b);
+      return a + b;
+    });
+    console.log('total ',total);
+
+    let min = items.reduce(function(a,b){
+      console.log('a ',a,' b ',b);
+      return a < b ? a : b;
+    });
+    console.log('min ',min);
+
+    let students = [
+      {
+        name : 'Mya Mya',
+        gender : 'Female',
+        age : 20,
+      },
+      {
+        name : 'Aung Aung',
+        gender:'Male',
+        age : 30
+      },
+      {
+        name : 'Win Aung',
+        gender:'Male',
+        age : 24
+      },
+      {
+        name : 'Su Su',
+        gender:'Female',
+        age : 21
+      }, 
+      {
+        name : 'Win Naing',
+        gender:'Male',
+        age : 25
+      },
+    ];
+    let youngestMale = students.filter(stud=>stud.gender=='Male')
+                                .reduce((a,b)=>a.age < b.age ? a : b);
+    console.log('youngestMale ',youngestMale.name);
+  </script>
+ 
+</html>

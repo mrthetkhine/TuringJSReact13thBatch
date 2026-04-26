@@ -1,0 +1,30 @@
+<html>
+
+
+  <script>
+ 
+    let items = [1,2,3,4,5];
+    let oddItems = items.filter(item=>item%2!==0);
+    console.log('items ',items);
+    console.log('oddItems ',oddItems);
+
+    let indexs = [];
+    for(const item of oddItems)
+    {
+      indexs.push(items.indexOf(item));
+    }
+    console.log('indexs ',indexs);
+    indexs.reverse();
+    console.log('indexs ',indexs);
+    for(const index of indexs)
+    {
+      items.splice(index,1);
+    }
+    console.log('items ',items);
+
+    let arr2 = new Array(5).fill(10);
+    console.log('arr2 ',arr2);
+    
+  </script>
+ 
+</html>

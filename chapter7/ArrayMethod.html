@@ -1,0 +1,44 @@
+<html>
+
+
+  <script>
+ 
+    let items = [1,2,3,4,5];
+
+    function print(item,index,arr)
+    {
+      console.log('item ',item, ' index ',index, ' arr ',arr  );
+    }
+    //items.forEach(print);
+    items.forEach(function(item,index,arr){
+      console.log('item ',item, ' index ',index, ' arr ',arr  );
+    });
+
+    let arr2 = [];
+    /*
+    for(const item of items)
+    {
+      arr2.push(item*2);
+    } 
+    console.log('arr2 ',arr2);
+    */ 
+   arr2 = items.map(item=>item*2);
+   console.log('arr2 ',arr2);
+
+   items = [
+      {
+        name : 'item1',
+        price : 100,
+        qty : 10,
+      },
+      {
+        name : 'item2',
+        price : 200,
+        qty : 20
+      }
+    ];
+    let totals = items.map(item=>item.price * item.qty);
+    console.log('totals ',totals);
+  </script>
+ 
+</html>

@@ -1,0 +1,54 @@
+<html>
+
+
+  <script>
+ 
+    let items = [1,2,3,4,5];
+
+    /*
+    let evenItems =[];
+
+    for(const item of items)
+    {
+      if(item % 2 == 0)
+      {
+        evenItems.push(item);
+      }
+    }
+    */
+   let evenItems = items.filter(item=>item % 2 == 0);
+    console.log('evenItems ',evenItems);
+
+    let students = [
+      {
+        name : 'Mya Mya',
+        gender : 'Female',
+        age : 20,
+      },
+      {
+        name : 'Aung Aung',
+        gender:'Male',
+        age : 30
+      },
+      {
+        name : 'Win Aung',
+        gender:'Male',
+        age : 24
+      },
+      {
+        name : 'Su Su',
+        gender:'Female',
+        age : 21
+      }, 
+      {
+        name : 'Win Naing',
+        gender:'Male',
+        age : 25
+      },
+    ];
+    let femaleStudents = students.filter(student=>student.gender ==='Female')
+                                  .map(student=>student.name);
+    console.log('femaleStudents ',femaleStudents);
+  </script>
+ 
+</html>
