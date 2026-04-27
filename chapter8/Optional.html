@@ -1,0 +1,28 @@
+<html>
+
+
+  <script>
+   
+    function greet(message='hello')
+    {
+      console.log('Greet ',message);
+    }
+    greet();
+    greet('hi');
+
+    function sum(x,...rest)
+    {
+      console.log('x ',x);
+      console.log('rest ',rest);
+      let total = x;
+      for(const item of rest)
+      {
+        total += item;
+      }
+      return total;
+    }
+    console.log(sum(10,2));
+    console.log(sum(10,2,4,5));
+  </script>
+ 
+</html>

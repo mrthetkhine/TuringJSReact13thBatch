@@ -1,0 +1,40 @@
+<html>
+
+
+  <script>
+   
+    let obj = {
+      items : [],
+      push(element)
+      {
+        this.items.push(element);
+      },
+      pop()
+      {
+        return this.items.pop();
+      }
+    }
+    obj.push(10);
+    obj.push(20);
+    obj.items = [100,200];
+    console.log('Pop ',obj.pop());
+    console.log('Pop ',obj.pop());
+
+    function unique()
+    {
+      let x = 0;
+      return function()
+      {
+        return x++;
+      }
+    }
+    let id = unique();
+    console.log('id ',id());
+    console.log('id ',id());
+
+    let id2 = unique();
+    console.log('id2 ',id2());  
+    console.log('id2 ',id2());
+  </script>
+ 
+</html>

@@ -1,0 +1,23 @@
+<html>
+
+
+  <script>
+    //parameter
+    let add = (x,y)=>{
+      console.log('x ',x, ' y ',y );
+      return x+y;
+    };
+    console.log(add(10,20));  
+    console.log(add(30,20));
+
+    let items = [1,2,3,4,5];
+    let squares = items.map(x=>x*x);
+    console.log(squares);
+
+    let wraper =x=>({
+      value :x
+    });
+    console.log(wraper(10));
+  </script>
+ 
+</html>

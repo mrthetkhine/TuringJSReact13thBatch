@@ -1,0 +1,81 @@
+<html>
+
+
+  <script>
+ 
+    let items = [1,2,11,100,3,4];
+    items.sort((a,b)=>b-a);
+    /*
+    a == b =>0
+    a > b >0
+    a < b <0
+    */
+    console.log('items ',items);
+
+    let students = [
+      {
+        name : 'Mya Mya',
+        gender : 'Female',
+        age : 20,
+      },
+      {
+        name : 'Aung Aung',
+        gender:'Male',
+        age : 30
+      },
+      {
+        name : 'Win Aung',
+        gender:'Male',
+        age : 24
+      },
+      {
+        name : 'Aung Thu',
+        gender:'Male',
+        age : 24
+      },
+      {
+        name : 'Su Su',
+        gender:'Female',
+        age : 21
+      }, 
+      {
+        name : 'Win Naing',
+        gender:'Male',
+        age : 25
+      },
+    ];
+    students.sort((a,b)=>{
+      if(a.age== b.age)
+      {
+        return a.name.localeCompare(b.name);
+      }
+      else
+      {
+        return a.age - b.age;
+      }
+    });
+    students.reverse();
+    console.log('students ',students);
+
+    items = [1,2,11,100,3,4];
+    console.log('join ',items.join());
+    console.log('join ',items.join('-'));
+    console.log('join ',items.join(':'));
+    console.log('toString ',items.toString());
+
+    console.log('isArray ',Array.isArray(items));
+    console.log('isArray ',Array.isArray({}));
+
+    let obj= {
+      0:10,
+      1:20,
+      length:2
+    }
+    console.log('isArray ',Array.isArray(obj));
+    let str = "Hello";
+    console.log('isArray ',Array.isArray(str));
+    console.log('length ',str.length );
+    console.log('str[0] ',str[0] );
+  </script>
+ 
+</html>

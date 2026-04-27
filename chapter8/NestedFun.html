@@ -1,0 +1,23 @@
+<html>
+
+
+  <script>
+    function outer()
+    {
+      console.log('I am outer function');
+      function inner()
+      {
+        console.log('I am inner function');
+        function innerMost()
+        {
+          console.log('I am inner most function');
+        }
+        innerMost();
+      }
+      inner();
+    }
+    outer();
+    //inner();
+  </script>
+ 
+</html>

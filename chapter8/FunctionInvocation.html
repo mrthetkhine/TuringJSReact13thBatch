@@ -1,0 +1,34 @@
+<html>
+
+
+  <script>
+   
+    let obj = {
+      name : 'Jack',
+      age : 30,
+      display()
+      {
+        console.log('Name ',this.name, ' Age ',this.age);
+      }
+    }
+    obj.display();
+    obj['display']();
+    
+
+    function Human(name,age)
+    {
+      this.name = name;
+      this.age = age;
+      this.display = function()
+      {
+         console.log('Name ',this.name, ' Age ',this.age);
+      }
+    }
+    let obj2 = new Human('Jane',20);
+    obj2.display();
+
+    let date = new Date();
+    console.log('date ',date);
+  </script>
+ 
+</html>

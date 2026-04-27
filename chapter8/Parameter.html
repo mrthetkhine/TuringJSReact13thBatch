@@ -1,0 +1,46 @@
+<html>
+
+
+  <script>
+    //parameter
+    function add(x,y)
+    {
+      console.log('arguments',arguments );
+      return x+y;
+    }
+    //argument
+    let result = add(10,20);//x=10,y =20
+    console.log(result);
+
+    result = add(30,20);
+    console.log(result);
+
+    function inc(x)
+    {
+      x++;
+    }
+    let a = 10;
+    inc(a);//x = a;
+    console.log('a is ',a);
+
+    function inc2(obj)
+    {
+      obj.value ++;
+    }
+    let obj1 = {
+      value : 100
+    };
+    inc2(obj1);
+    console.log('obj1.value is ',obj1.value);
+
+    function inc3(obj)
+    {
+      obj = {
+        value : obj.value + 1
+      }
+    }
+    inc3(obj1);
+    console.log('obj1.value is ',obj1.value);
+  </script>
+ 
+</html>

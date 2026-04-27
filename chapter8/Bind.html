@@ -1,0 +1,30 @@
+<html>
+
+
+  <script>
+   
+    let items = [10,2,30,5];
+    console.log('Max ',Math.max(1,10,2));
+    console.log('Max ',Math.max(...items));
+    console.log('Max ',Math.max(items));
+
+    console.log('Max ',Math.max.apply(Math,items));
+    let obj = {
+      name : 'Jack',
+      age : 30,
+      display(message)
+      {
+        console.log('Message ',message);
+        console.log('Name ',this.name, ' Age ',this.age);
+      }
+    }
+    let fun = obj.display;
+    let obj2 = {
+      name : "Jhon",
+      age : 45,
+    }
+    let fun2 = fun.bind(obj2,'Hello');
+    fun2();
+  </script>
+ 
+</html>

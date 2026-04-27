@@ -1,0 +1,28 @@
+<html>
+
+
+  <script>
+   
+    let obj = {
+      name : 'Jack',
+      age : 30,
+      display(message)
+      {
+        console.log('Message ',message);
+        console.log('Name ',this.name, ' Age ',this.age);
+      }
+    }
+    let obj2 ={
+      name : "JHon",
+      age : 40,
+    }
+    obj.display('hi');
+    let fun = obj.display;//fun=display method,not object
+    fun.call(obj,'hello');
+
+    fun.call(obj2,'borrowing');
+
+    fun.apply(obj2,['borrowing']);
+  </script>
+ 
+</html>
