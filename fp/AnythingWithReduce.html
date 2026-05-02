@@ -1,0 +1,18 @@
+<html>
+
+
+  <script>
+   
+    let items = [1,2,3,4];
+    let doubleItems = items.reduce((a,b)=>{
+      return [...a,b*2]
+    },[]);
+    console.log('doubleItems ',doubleItems);
+    const isEven = (n) => n%2==0;
+    let evenList = items.reduce((a,b)=>{
+      return isEven(b) ? [...a,b] : a;
+    },[]);
+    console.log('evenList ',evenList);
+  </script>
+ 
+</html>

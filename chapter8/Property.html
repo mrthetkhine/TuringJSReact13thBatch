@@ -1,0 +1,21 @@
+<html>
+
+
+  <script>
+   
+    function add(a,b)
+    {
+      console.log('arguments ',arguments.length);
+      return a+b;
+    }
+    console.log('length ',add.length);
+    add(1);
+    console.log('name ',add.name);
+    console.log('prototype ',add.prototype);
+    console.log('toString ',add.toString());
+
+    let fun = new Function('a','b','return a+b');
+    console.log(fun(1,2));
+  </script>
+ 
+</html>

@@ -1,0 +1,41 @@
+<html>
+
+
+  <script>
+   
+    function once(fn,g)
+    {
+      let done = false;
+      return function(...args)
+      {
+        if(!done)
+        {
+          fn(...args);
+          done = true;
+        }
+        else{
+          g();
+       }
+        
+      }
+    }
+    function payment(amount )
+    {
+      console.log('Payment done ',amount); 
+    }
+   
+    function transferMoney()
+    {
+       console.log('Money transferred');   
+    }
+    payment = once(payment, () => console.log('Payment already done') );
+    transferMoney = once(transferMoney, () => console.log('Transfer already done') );
+
+    payment(100);
+    transferMoney();
+
+    payment(200);
+    transferMoney();
+  </script>
+ 
+</html>

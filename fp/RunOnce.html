@@ -1,0 +1,33 @@
+<html>
+
+
+  <script>
+   
+   let paymentDone = false;
+    function payment()
+    {
+      if(!paymentDone)
+      {
+        console.log('Payment done');
+        paymentDone = true;
+      }
+      
+    }
+    let tranferDone = false;
+    function transferMoney()
+    {
+      if(!tranferDone)
+      {
+        console.log('Money transferred');
+        tranferDone = true;
+      }
+      
+    }
+    payment();
+    transferMoney();
+
+    payment();
+    transferMoney();
+  </script>
+ 
+</html>

@@ -1,0 +1,46 @@
+<html>
+
+
+  <script>
+   
+    function add(a,b)
+    {
+      return a+b;
+    }
+    console.log('add(10,20) ',add(10,20));
+
+    let i = 0;
+    function increment()
+    {
+      return i++;
+    }
+    console.log('increment() ',increment());
+    console.log('increment() ',increment());
+
+    function getDate()
+    {
+      return new Date();
+    }
+    console.log('getDate() ',getDate());
+    console.log('getDate() ',getDate());
+
+    function incAge(obj)
+    {
+      obj.age++;
+    }
+    let person = {age: 20};
+
+    function incAge2(obj)
+    {
+      return {
+        ...obj,
+        age: obj.age+1
+      };
+    }
+
+    console.log('person ',person);
+    console.log('incAge(person) ',incAge2(person));
+    console.log('person ',person);
+  </script>
+ 
+</html>
