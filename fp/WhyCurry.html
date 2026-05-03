@@ -1,0 +1,32 @@
+<html>
+    <script src="./funlib.js"></script>
+    <script>
+        function inc(x)
+        {
+            return x+1;
+        }
+        function add(x,y)
+        {
+            return x+y;
+        }
+        function curry(fn)
+        {
+            return function(x)
+            {
+                if(fn.length === 1)
+                {
+                    return fn(x);
+                }
+                else
+                {
+                    return curry(fn.bind(null,x));
+                }
+            }
+        }
+        let addCurry = curry(add);
+        console.log('add(5) ',addCurry(5));
+        console.log('add(5)(3) ',addCurry(5)(3));
+        let newFunc = pipe(inc,addCurry(5));
+        console.log(newFunc(3));
+    </script>
+</html>

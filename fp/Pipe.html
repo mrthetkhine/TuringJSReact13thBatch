@@ -1,0 +1,41 @@
+<html>
+    <script>
+        function toUpper(msg)
+        {
+            return msg.toUpperCase();
+        }
+        function appendHi(msg)
+        {
+            return msg + ' Hi';
+        }
+        function toUpperAndAppendHi(msg)
+        {
+            return appendHi(toUpper(msg));
+        }
+        console.log(toUpperAndAppendHi('hello world'));
+
+        function compose(funA,funB)
+        {
+            return function(x)
+            {
+                return funA(funB(x));
+            }
+        }
+        let newFun = compose(appendHi,toUpper);
+        console.log(newFun('Hello'));
+
+        function pipe(...funs)
+        {
+            return function(x)
+            {
+                return funs.reduce((acc,fn) => fn(acc), x);
+            }
+        }
+        function getLength(msg)
+        {
+            return msg.length;
+        }
+        let newFun2 = pipe(appendHi,toUpper,getLength,console.log);
+        newFun2('hello world');
+    </script>
+</html>

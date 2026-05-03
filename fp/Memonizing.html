@@ -1,0 +1,39 @@
+<html>
+    <script>
+        function factorial(n)
+        {
+            console.log('calculating factorial for ', n);
+            let result = 1;
+            for(let i=1; i<=n; i++)
+            {
+                result *= i;
+            }
+            return result;
+        }
+        /*
+        2 : 2 
+        3 : 6
+        */
+        function memonize(fn)
+        {
+            let cache = {};
+            return function(x)
+            {
+                if(cache[x])
+                {
+                    return cache[x];
+                }
+                else
+                {
+                    let result = fn(x);
+                    cache[x] = result;
+                    return result;
+                }
+            }
+        }
+        factorial = memonize(factorial);
+        console.log('fact 5 ',factorial(5));
+        console.log('fact 6 ',factorial(6));
+        console.log('fact 5 ',factorial(5));
+    </script>
+</html>

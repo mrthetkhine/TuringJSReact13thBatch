@@ -1,0 +1,40 @@
+<html>
+    <script>
+        console.log('ParseInt 10',parseInt('10'));
+        console.log( 'parseInt 10,2',parseInt('10', 2));
+        console.log(    'parseInt 10,8', parseInt('10', 8));
+        console.log('parseInt 10,16', parseInt('10', 16));
+
+        console.log(['123','456'].map(parseInt));
+        //value,index,array 
+        //123,0
+        //456,1
+        console.log('parseInt ',parseInt('123', 0));
+        console.log('parseInt ',parseInt('456', 1));
+
+        function unary(fn)
+        {
+            return function(x)
+            {
+                return fn(x);
+            }
+        }
+        console.log(['123','456'].map(unary(parseInt)));
+
+        function ifThenElse(con,thenFn,elseFn)
+        {
+            return con ? thenFn() : elseFn();
+        }
+        ifThenElse(1>2, () => console.log('then'), () => console.log('else'));
+
+        let obj = {
+            name : 'john',
+            age : 30
+        }
+        function getProp(obj,prop)
+        {
+            return obj[prop];
+        }
+        console.log(getProp(obj,'name'));
+    </script>
+</html>

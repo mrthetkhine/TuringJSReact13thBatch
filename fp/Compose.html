@@ -1,0 +1,41 @@
+<html>
+    <script>
+        function toUpper(msg)
+        {
+            return msg.toUpperCase();
+        }
+        function appendHi(msg)
+        {
+            return msg + ' Hi';
+        }
+        function toUpperAndAppendHi(msg)
+        {
+            return appendHi(toUpper(msg));
+        }
+        console.log(toUpperAndAppendHi('hello world'));
+
+        function compose(funA,funB)
+        {
+            return function(x)
+            {
+                return funA(funB(x));
+            }
+        }
+        let newFun = compose(appendHi,toUpper);
+        console.log(newFun('Hello'));
+
+        function composeMany(...funs)
+        {
+            return function(x)
+            {
+                return funs.reduceRight((acc,fn) => fn(acc), x);
+            }
+        }
+        function getLength(msg)
+        {
+            return msg.length;
+        }
+        let newFun2 = composeMany(console.log,getLength,toUpper,appendHi);
+        newFun2('hello world');
+    </script>
+</html>

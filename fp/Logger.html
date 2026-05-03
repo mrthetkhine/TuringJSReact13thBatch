@@ -1,0 +1,27 @@
+<html>
+    <script>
+        function one(message)
+        {
+            console.log("function one", message);
+            return message.toUpperCase();
+        }
+        function two()
+        {
+            console.log("function two");
+        }
+        function logger(fn,log = console.log)
+        {
+            return function(...args)
+            {
+                log("before ",fn.name, 'Argu ',args);
+                let ret = fn(...args);
+                log("after ",fn.name);
+                return ret;
+            }
+        }
+        one = logger(one);
+        two = logger(two);
+        console.log(one('hello world'));
+        two();
+    </script>
+</html>
