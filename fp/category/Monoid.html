@@ -1,0 +1,27 @@
+
+<html>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.30.1/ramda.js"></script>
+   <script src="./funlib.js">   </script>
+    <script>
+        let Plus = {
+            binaryOp:(x,y)=>x+y,
+            identity:()=>0
+        }
+        let Min = {
+            binaryOp:(x,y)=>x <y ? x : y,
+            identity:()=>Infinity
+        }
+        let Max = {
+            binaryOp:(x,y)=>x >y ? x : y,
+            identity:()=>-Infinity
+        }
+        let items = [1,2,3,4];
+
+        function reduce(monoid,arr)
+        {
+            return arr.reduce(monoid.binaryOp,monoid.identity());
+        }
+        const total = reduce(Plus,items);
+        console.log('Total ',total);
+    </script>    
+</html>    

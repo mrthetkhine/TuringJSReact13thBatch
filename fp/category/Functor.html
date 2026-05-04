@@ -1,0 +1,18 @@
+
+<html>
+   
+    <script>
+        const Container =(x)=>({
+            map:(fn) => Container(fn(x)),
+            valueOf() { return x; }
+        });     
+        Container.of = Container;
+        const inc = (x) => x + 1;
+        const double = (x)=>x *2;
+        let c1 = Container.of(10);
+        let c2 = c1.map(inc)
+                   .map(double);
+        console.log('c1 ',c1.valueOf());
+        console.log('c2 ',c2.valueOf());
+    </script>    
+</html>    

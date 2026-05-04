@@ -19,5 +19,34 @@
         }
         let add2 = R.curry(add);
         console.log('Add ',add2(5)(3));
+        console.log('R.add 2 ',R.add(2));
+        console.log('R.add 2,3 ',R.add(2)(3));
+        console.log('R.and(true,true )',R.and(true,true));
+
+        //div(x,y)
+        // 5/2
+        //2/5
+        let fun = R.pipe( R.flip(R.divide)(2),R.add(1) );
+        console.log('Fun ',fun(5));
+        console.log('R.identity 3 ',R.identity(3));
+
+        let obj = {
+            name : "Jack",
+            age : 30
+        }
+        console.log('R.prop ',R.prop('name')(obj));
+        console.log('R.assoc ',R.assoc('name','Jhon')(obj));
+        console.log('Obj ',obj);
+        const byGrade = R.groupBy(function(student) {
+                    const score = student.score;
+                    return score < 65 ? 'F' :
+                            score < 70 ? 'D' :
+                            score < 80 ? 'C' :
+                            score < 90 ? 'B' : 'A';
+        });
+        const students = [{name: 'Abby', score: 84},
+                {name: 'Eddy', score: 58},
+                {name: 'Jack', score: 69}];
+        console.log('byGrade ',byGrade(students));
     </script>    
 </html>    

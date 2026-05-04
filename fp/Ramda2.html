@@ -1,0 +1,49 @@
+
+<html>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.30.1/ramda.js"></script>
+   <script src="./funlib.js"></script>
+    <script>
+        let students = [
+            {
+                name : "Jhon",
+                gender:"Male"
+            },
+             {
+                name : "Mary",
+                gender:"Female"
+            },
+            {
+                name : "Win Win",
+                gender:"Female"
+            },
+            {
+                name : "Hla Win",
+                gender:"Male"
+            },
+            
+        ]
+
+        console.log('byGrade ',R.groupBy(R.prop('gender'))(students));
+        const even = x => x % 2 == 0;
+        console.log('R.count ',R.count(even, [1, 2, 3, 4, 5]));
+
+        let R2 = {};
+        function count (predicateFn,arr)
+        {
+            let count = 0;
+            for(const item of arr)
+            {
+                if(predicateFn(item))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        R2.count = curry(count);
+        console.log('R2.count ',R2.count(even) ([1, 2, 3, 4, 5]));
+
+        const numbers = [1.0, 1.1, 1.2, 2.0, 3.0, 2.2];
+        console.log('countBy ',R.countBy(Math.floor)(numbers)); 
+    </script>    
+</html>    
