@@ -1,0 +1,65 @@
+
+<html>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.30.1/ramda.js"></script>
+    <script>
+        const MayBe =(x)=>({
+            isEmpty:(x)=> x === null || x === undefined,
+            map(fn){
+                return this.isEmpty(x) ? MayBe.of(null) : MayBe.of(fn(x));
+            },
+            valueOf() { return x; },
+            orElse(value)
+            {
+                return this.isEmpty(x)?MayBe.of(value) : this;
+            }
+        });     
+        MayBe.of = MayBe;
+        
+
+        let employees = {
+            1:{
+                name: 'Jill',
+            },
+            2:{
+                name: 'Jhon',
+                supervisorId: 1
+            },
+            3:{
+                name: 'Jane',
+                supervisorId: 2
+            }
+        }
+        function getSupervisorName(empId)
+        {
+            let emp = employees[empId];
+            if(emp)
+            {
+                let superId = emp.supervisorId;
+                if(superId)
+                {
+                    let superEmp = employees[superId];
+                    if(superEmp)
+                    {
+                        return superEmp.name;
+                    }
+                }
+            }
+        }
+        function getSupervisorNameV2(empId)
+        {
+            return MayBe(empId)
+                        .map(empId=>employees[empId])
+                        .map(emp=>emp.supervisorId)
+                        .map(superId=>employees[superId])
+                        .map(superEmp=>superEmp.name)
+                        .orElse('No supervisor')
+        }
+        console.log('supervisorId 3',getSupervisorName(3));
+        console.log('supervisorId 1',getSupervisorName(1));
+        console.log('supervisorId 2',getSupervisorName(2));
+
+        console.log('supervisorId 3',getSupervisorNameV2(3).valueOf());
+        console.log('supervisorId 1',getSupervisorNameV2(1).valueOf());
+        console.log('supervisorId 2',getSupervisorNameV2(2).valueOf());
+    </script>    
+</html>    

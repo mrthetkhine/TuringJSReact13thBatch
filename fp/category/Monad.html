@@ -1,0 +1,81 @@
+
+<html>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.30.1/ramda.js"></script>
+    <script>
+        
+        
+        const Monad =(x)=>({
+          
+            map(fn){
+                return Monad.of(fn(x));
+            },
+            valueOf() { return x; },
+            ap(another)
+            {
+                return another.map(x);
+            },
+            flat(){
+              return x;  
+            },
+            flatMap(fn)
+            {
+                return fn(x);
+            }
+            
+        });     
+        Monad.of = Monad;
+        const Left =(x)=>({
+    
+            map(fn){
+                return Left.of(x);
+            },
+            valueOf() { return x; },
+            matchWith({left,right}) //obj = {left(),right()}
+            {
+                return left(x);
+            }
+        });     
+        Left.of = Left;
+        const Right =(x)=>({
+          
+            map(fn){
+                return Right.of(fn(x));
+            },
+            valueOf() { return x; },
+            matchWith({left,right}) //obj = {left(),right()}
+            {
+                return right(x);
+            }
+            
+        });     
+        Right.of = Right;
+        function validate(obj)//mondaic function
+        {
+            if(obj.email && obj.email.includes('@'))
+            {
+                return Right.of(obj);
+            }
+            else
+            {
+                return Left.of('Invalid email');
+            }
+        }
+        //normal value=>normal value
+        //value->validate->name->uppercase
+        Monad.of({
+            name : "Jhon",
+            email: "jhon@gmail.com"
+        })
+        .flatMap(validate)//Monad(Right({name : "Jhon", email: "jhon@gmail.com"}))
+        //.map(x=>console.log(x));
+        //.flat()
+        .map(R.prop('name'))
+        .map(R.toUpper)
+        .matchWith({
+            left : console.log,
+            right : console.log
+        })
+        
+                    
+    </script>    
+</html>    

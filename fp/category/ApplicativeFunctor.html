@@ -1,0 +1,28 @@
+
+<html>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.30.1/ramda.js"></script>
+    <script>
+        
+        
+        const Container =(x)=>({
+          
+            map(fn){
+                return Container.of(fn(x));
+            },
+            valueOf() { return x; },
+            ap(another)
+            {
+                return another.map(x);
+            }
+            
+        });     
+        Container.of = Container;
+        
+        let another = Container.of(20);
+        let result = Container.of(10)
+                    .map(R.add)//Box(function)
+                    .ap(another);//Box(value)
+        console.log('Result ',result.valueOf());            
+                    
+    </script>    
+</html>    

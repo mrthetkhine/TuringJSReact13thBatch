@@ -1,0 +1,26 @@
+
+<html>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.30.1/ramda.js"></script>
+    <script>
+        
+        
+        const Monad =(x)=>({
+          
+            map(fn){
+                return Monad.of(fn(x));
+            },
+            valueOf() { return x; },
+            ap(another)
+            {
+                return another.map(x);
+            }
+            
+        });     
+        Monad.of = Monad;
+        
+        let arr = [1,2,3];
+        let result = arr.flatMap(x=>[x,x*2]);
+        console.log('Result ',result);           
+                    
+    </script>    
+</html>    
