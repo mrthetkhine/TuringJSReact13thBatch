@@ -1,0 +1,66 @@
+
+<html>
+   
+    <script>
+        
+        /*
+        function createItem(name,price,qty)
+        {
+            return {
+                name,
+                price,
+                qty,
+                get total()
+                {
+                    //console.log('get total');
+                    return this.price * this.qty
+                },
+                display()
+                {
+                    console.log(`Name ${this.name} Price ${this.price} Total ${this.total}`)
+                }
+            }
+        }
+        let item1 = createItem('Apple',10,2);
+        let item2 = createItem('Orange',20,4);
+        item1.display();
+        item2.display();
+        */ 
+       class Item
+       {
+            #price;
+            constructor(name,price,qty)
+            {
+                this.name = name;
+                this.#price = price;
+                this.qty = qty;
+                console.log('Constructor');
+            }
+            get total()
+            {
+                //console.log('get total');
+                return this.#price * this.qty
+            }
+            display()
+            {
+                console.log(`Name ${this.name} Price ${this.#price} Total ${this.total}`)
+            }
+            static common()
+            {
+                console.log('Common ',this.name, ' Price ',this.price);
+            }
+       }
+       let item1 = new Item('Apple',30,4);
+       let item2 = new Item('Orange',20,4);
+      // item1.price =20;
+       //item1.#price =20;
+       item1.display();
+       item2.display();
+       Item.common();
+
+       console.log('Item1 ',item1);
+       console.log('Item2 ',item2);
+
+       console.log('Math.max ',Math.max(10,2));
+    </script>    
+</html>    

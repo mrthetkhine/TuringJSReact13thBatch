@@ -1,0 +1,23 @@
+
+<html>
+   
+    <script>
+        
+        class Student
+        {
+            static count = 0;
+            constructor(name) {
+                this.name = name;
+                Student.count++;
+            }
+            
+        }
+        let stud1 = new Student('Aung Aung');
+        let stud2 = new Student('Ko Ko');
+
+        console.log('stud1 ',stud1);
+        console.log('stud2 ',stud2);
+
+        console.log('Sudent.count ',Student.count);
+    </script>    
+</html>    
