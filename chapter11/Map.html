@@ -1,0 +1,37 @@
+
+<html>
+  
+    <script>
+        let map = new Map([
+            ['one',1],
+            ['two',200]
+        ]);
+        console.log('Map ',map);
+        console.log('Map.get ',map.get('one'));
+        console.log('Map.get hello ',map.get('hello'));
+
+        map.set('one',100);
+        console.log('Map ',map);
+        map.delete('one');
+        console.log('Map ',map);
+
+        console.log('Map.size ',map.size);
+        //map.clear();
+
+        map.set('three',300);
+        console.log('map.has one ',map.has('one'));
+        console.log('map has two ',map.has('two'));
+        console.log('Map ',map);
+        console.log('Map.size ',map.size);
+
+        for(const [key,value] of map)
+        {
+           console.log('key ',key);
+           console.log('value ',value); 
+        }
+
+        console.log('keys ',map.keys());
+        console.log('values ',map.values());
+        console.log('entries ',map.entries());
+    </script>    
+</html>    

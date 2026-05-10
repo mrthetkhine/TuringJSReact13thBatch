@@ -1,0 +1,25 @@
+
+<html>
+    
+    <script>
+       //let arr =new Array(100_000);
+       let arr =new Int8Array(10);
+       arr = new Uint8Array(10);
+       arr[0] =-10;
+       console.log('Arr ',arr);
+       console.log('Arr ',arr[0]);
+       
+       let buffer = new ArrayBuffer(100);
+       console.log('buffer.length ',buffer.byteLength);
+
+       let view = new DataView(buffer, buffer.byteOffset,
+                        buffer.byteLength);
+        let int = view.getInt32(0);
+        console.log('int ',int);
+        view.setInt32(0,10,true);
+        console.log('int ',int);
+
+        int = view.getInt32(0,true);
+        console.log('int ',int);
+    </script>    
+</html>    

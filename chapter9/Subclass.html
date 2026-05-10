@@ -1,0 +1,39 @@
+
+<html>
+   
+    <script>
+        
+        class Human
+        {
+            constructor(name)
+            {
+                console.log('Human constructor');
+                this.name =name;
+            }
+            work()
+            {
+                console.log(`${this.name} is working`);
+            }
+            display()
+            {
+                console.log(`Name ${this.name}`);
+            }
+        }
+        class Teacher extends Human
+        {
+            constructor(name,subject)
+            {
+                super(name);
+                this.subject = subject;
+                console.log('Teacher constructor');
+            }
+            work()
+            {
+                console.log(`${this.name} is teaching ${this.subject}`);
+            }
+        }
+        let teacher =new Teacher('TK','Programming');
+        teacher.work();
+        teacher.display();
+    </script>    
+</html>    

@@ -10,11 +10,18 @@
                 this.name = name;
                 Student.count++;
             }
-            
+
         }
+        Student.prototype.display = function()
+        {
+            console.log('Name ',this.name);
+        }
+
         let stud1 = new Student('Aung Aung');
         let stud2 = new Student('Ko Ko');
 
+        stud1.display();
+        stud2.display();
         console.log('stud1 ',stud1);
         console.log('stud2 ',stud2);
 

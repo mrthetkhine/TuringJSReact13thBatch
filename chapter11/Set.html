@@ -1,0 +1,30 @@
+
+<html>
+  
+    <script>
+        let items =[1,2,2,1,3];
+        let set =new Set(items);
+        console.log('set     ',set);
+        console.log('size ',set.size);
+
+        set.add(2);
+        console.log('set     ',set);
+        console.log('size ',set.size);
+
+        set.delete(2);
+        console.log('set     ',set);
+        console.log('size ',set.size);
+
+        set.add(4);
+        console.log('set     ',set);
+        
+        //set.clear();
+        console.log('set     ',set);
+        console.log('size ',set.size);
+
+        for(const item of set)
+        {
+                console.log('item ',item);
+        }
+    </script>    
+</html>    

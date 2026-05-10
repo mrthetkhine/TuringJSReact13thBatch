@@ -17,10 +17,45 @@
             
         });     
         Monad.of = Monad;
-        
-        let arr = [1,2,3];
-        let result = arr.flatMap(x=>[x,x*2]);
-        console.log('Result ',result);           
+        const Left =(x)=>({
+    
+            map(fn){
+                return Left.of(x);
+            },
+            valueOf() { return x; },
+            matchWith({left,right}) //obj = {left(),right()}
+            {
+                return left(x);
+            }
+        });     
+        Left.of = Left;
+        const Right =(x)=>({
+          
+            map(fn){
+                return Right.of(fn(x));
+            },
+            valueOf() { return x; },
+            matchWith({left,right}) //obj = {left(),right()}
+            {
+                return right(x);
+            }
+            
+        });     
+        Right.of = Right;
+        function validate(obj)
+        {
+            if(obj.email && obj.email.includes('@'))
+            {
+                return Right.of(obj);
+            }
+            else
+            {
+                return Left.of('Invalid email');
+            }
+        }
+        Container.of({
+            
+        })
                     
     </script>    
 </html>    
