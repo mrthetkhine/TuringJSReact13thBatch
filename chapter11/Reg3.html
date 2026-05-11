@@ -1,0 +1,34 @@
+
+<html>
+    
+    <script>
+
+       
+        let pattern = /^\d{2,5}$/;
+        console.log('test 1 ',pattern.test('1'));
+        console.log('test 12 ',pattern.test('12'));
+        console.log('test 32311 ',pattern.test('32311'));
+        console.log('test 123456 ',pattern.test('123456'));
+        
+        pattern = /^\d{2,}$/;
+        console.log('test 1 ',pattern.test('1'));
+        console.log('test 12 ',pattern.test('12'));
+        console.log('test 32311 ',pattern.test('32311'));
+        console.log('test 123456 ',pattern.test('123456'));
+
+        pattern = /^\d?$/;
+        console.log('test 1 ',pattern.test('1'));
+        console.log('test  ',pattern.test(''));
+        console.log('test 12 ',pattern.test('12'));
+
+        pattern = /^\d+$/;
+        console.log('test 1 ',pattern.test('1'));
+        console.log('test  ',pattern.test(''));
+        console.log('test 12 ',pattern.test('12'));
+
+        pattern = /^\d*$/;
+        console.log('test 1 ',pattern.test('1'));
+        console.log('test  ',pattern.test(''));
+        console.log('test 12 ',pattern.test('12'));
+    </script>    
+</html>    

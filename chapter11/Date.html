@@ -1,0 +1,21 @@
+
+<html>
+    
+    <script>
+        let date = new Date();
+        console.log('Date ',date);
+        console.log('time ',date.getTime());
+        let time = date.getTime();
+
+        date = new Date(2025,0,1,22,25);
+        console.log('Date in jan1 2025 ',date);
+
+        date.setDate(date.getDate()+7);
+        console.log('+7 days ',date );
+        console.log('Month ',date.getMonth( ));
+        console.log('FullYear ',date.getFullYear());
+
+        date =new Date(time);
+        console.log('Date from time ',date);
+    </script>    
+</html>    

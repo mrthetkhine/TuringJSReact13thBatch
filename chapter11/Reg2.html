@@ -1,0 +1,33 @@
+
+<html>
+    
+    <script>
+
+       let pattern = /^\w{4}$/;
+       console.log('test 3231 ',pattern.test('3231'));
+       console.log('validOtp 231 ',pattern.test('231'));
+       console.log('validOtp 34A1 ',pattern.test('34A1'));
+
+       pattern = /^\W{4}$/;
+       console.log('test @#$@ ',pattern.test('@#$@'));
+       console.log('test A#$@ ',pattern.test('A#$@'));
+
+       pattern = /^\s$/;
+       console.log('test  ',pattern.test(' '));
+       console.log('test @#$@ ',pattern.test('@#$@'));
+
+       pattern = /^\S+$/;
+       console.log('test  ',pattern.test(' '));
+       console.log('test @#$@ ',pattern.test('@#$@'));
+
+       pattern = /^\d+$/;
+       console.log('test  1234',pattern.test('1234'));
+       console.log('test  1234567',pattern.test('1234567'));
+       console.log('test  A1234567',pattern.test('A1234567'));
+
+       pattern = /^\D+$/;
+       console.log('test  1234',pattern.test('1234'));
+       console.log('test  1234567',pattern.test('1234567'));
+       console.log('test  ABCD',pattern.test('ABCD'));
+    </script>    
+</html>    

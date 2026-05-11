@@ -6,5 +6,61 @@
        console.log('str ',str.charCodeAt(0));
        console.log('str ',str.charCodeAt(1));
        console.log('char code A ','A'.charCodeAt(0));
+
+       function validOtpFormat(str)
+       {
+            if(str.length == 4)
+            {
+                for(const ch in str)
+                {
+                    if( !(str.charCodeAt(ch) >=48 && str.charCodeAt(ch) <= 57))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+       }
+       console.log('validOtp 3231 ',validOtpFormat('3231'));
+       console.log('validOtp 231 ',validOtpFormat('231'));
+       console.log('validOtp 34A1 ',validOtpFormat('34A1'));
+
+       let pattern = /^[0-9]{4}$/;
+       console.log('validOtp 3231 ',pattern.test('3231'));
+       console.log('validOtp 231 ',pattern.test('231'));
+       console.log('validOtp 34A1 ',pattern.test('34A1'));
+
+       pattern = /^J/;
+       console.log('test Java ',pattern.test('Java'));
+       console.log('test Javascript ',pattern.test('JavaScript'));
+       console.log('test C# ',pattern.test('C#'));
+
+       pattern = /Script$/;
+       console.log('test JavaScript ',pattern.test('JavaScript'));
+       console.log('test VBScript ',pattern.test('VBScript'));
+       console.log('test Java ',pattern.test('Java'));
+
+       pattern = /^[ABC]+$/;
+       console.log('test A ',pattern.test('A') );
+       console.log('test AA ',pattern.test('AA') );
+       console.log('test BA ',pattern.test('BA') );
+       console.log('test AAC ',pattern.test('AAC') );
+
+       pattern = /^[^ABC]+$/;
+       console.log('test A ',pattern.test('A') );
+       console.log('test AA ',pattern.test('AA') );
+       console.log('test BA ',pattern.test('BA') );
+       console.log('test DED ',pattern.test('DED') );
+
+       pattern = /^.+$/;
+       console.log('test A ',pattern.test('A') );
+       console.log('test AA ',pattern.test('AA') );
+       console.log('test BA ',pattern.test('BA') );
+       console.log('test DED ',pattern.test('DED') );
+
     </script>    
 </html>    

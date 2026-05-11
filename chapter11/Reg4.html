@@ -1,0 +1,45 @@
+
+<html>
+    
+    <script>
+        console.log('"JavaScript".search(/script/ui) ',"JavaScript".search(/script/ui));
+        console.log('"JavaScript & VBScript".search(/script/ui) ',"JavaScript & VBScript".search(/script/gui));
+
+        let str = 'javascript & javaScript';
+        str = str.replace(/javascript/gi, "JavaScript");
+        console.log('str ',str);
+
+        console.log('match ',"7 plus 8 equals 15".match(/\d+/g));
+
+        let url = /(\w+):\/\/([\w.]+)\/(\S*)/;
+        let text = "Visit my blog at http://www.example.com/~david"; 
+        let match = text.match(url);
+        let fullurl, protocol, host, path;
+        if (match !== null) {
+            fullurl = match[0]; // fullurl == "http://www.example.com/~david"
+            protocol = match[1]; // protocol == "http"
+            host = match[2]; // host == "www.example.com" 
+            path = match[3]; 
+            // // path == "~david"
+        }
+        console.log('fullurl ',fullurl, ' protocol ',protocol, ' host ',host, ' path ',path );
+        const words = /\b\p{Alphabetic}+\b/gu; 
+        text = "This is a naïve test of the matchAll() method.";
+        for(let word of text.matchAll(words)) {
+            console.log(`Found '${word[0]}' at index ${word.index}.`);
+        }
+        console.log(' split ', '12,34,56'.split(','));
+
+        let pattern = /Java/g;
+        text = "JavaScript > Java";
+        
+        while((match = pattern.exec(text)) !== null) {
+            console.log(`Matched ${match[0]} at ${match.index}`);
+            console.log(`Next search begins at ${pattern.lastIndex}`);
+        }
+
+        pattern =/^[A-Z]/;
+        console.log('pattern.test(Java) ',pattern.test('Java'));
+        console.log('pattern.test(java) ',pattern.test('java'));
+    </script>    
+</html>    

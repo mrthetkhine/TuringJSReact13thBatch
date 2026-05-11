@@ -1,0 +1,18 @@
+<html>
+    
+    <script>
+        let euros = Intl.NumberFormat("es", {style: "currency", currency: "EUR"});
+        let dollars = Intl.NumberFormat("en", {style: "currency", currency: "MMK"});
+        console.log('Euros ',euros.format(1000));
+        console.log('Dollars ',dollars.format(1000));
+
+        let data = [0.05, .75, 1];
+        let formatData = Intl.NumberFormat(undefined, {
+            style: "percent",
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1
+        }).format;
+        console.log('formatData ',data.map(formatData));
+        
+    </script>
+</html>
