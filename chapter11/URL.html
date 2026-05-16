@@ -1,0 +1,12 @@
+<html>
+    
+    <script>
+        let url = new URL("https://example.com:8000/path/name? q=term#fragment");
+        console.log('url ',url);
+
+        let str ="http://www.google.com/search?query=my car";
+        let encoded = encodeURI(str);
+        console.log('encodeed ',encoded);
+        console.log('decode ',decodeURI(encoded));
+    </script>
+</html>

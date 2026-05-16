@@ -1,0 +1,21 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        
+        function*   range(start,end)
+        {
+            for(let i=start;i<end; i++)
+            {
+                yield i;
+            }
+        }
+        let r = range(0,4);
+        
+        for(const item of r)
+        {
+            console.log('item ',item);
+        }
+    </script>
+</html>

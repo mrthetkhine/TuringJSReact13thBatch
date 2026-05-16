@@ -1,0 +1,25 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        
+        function*  gen()
+        {
+            console.log('next invoked first time argument');
+            let y1 =yield 1;
+            console.log('y1 ',y1);
+            let y2 = yield 2;
+            console.log('y2 ',y2);
+
+            //return 100;
+            //throw new Error('How');
+        }
+        let g = gen();
+        console.log('g ',g);
+        console.log('g.next ',g.next('a'));
+        console.log('g.next ',g.next('b'));
+        console.log('g.next ',g.next());
+        console.log('g.next ',g.next());
+    </script>
+</html>

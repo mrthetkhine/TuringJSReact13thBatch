@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <button type="button" id="btnDoSomething">Do Something</button>
+    </body>
+    <script>
+        document.getElementById('btnDoSomething').addEventListener('click',function(){
+            console.log('Clicked');
+        });
+        function delay(ms)
+        {
+            let start =new Date();
+            while( (new Date() - start) < ms) {}
+        }
+        setTimeout(()=>{ //Normal queue
+            console.log('First Hello');
+        },0);
+        setTimeout(()=>{ //Normal queue
+            console.log('second Hello');
+        },0);
+        console.log('World');
+        queueMicrotask(() => { //micro task queue
+            console.log("queueMicrotask");
+        });
+        delay(3000);
+        
+    </script>
+</html>

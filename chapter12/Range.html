@@ -1,0 +1,46 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        
+        class Range
+        {
+            constructor(start,end)
+            {
+                this.start = start;
+                this.end = end;
+            }
+            [Symbol.iterator]()
+            {
+                console.log('called iterator');
+                let current = this.start;
+                let last = this.end;
+                return {
+                    next()
+                    {
+                       
+                        return {
+                            done : current > last-1,
+                            value: current>last-1?undefined: current++
+                        }
+                    }
+                }
+            }
+        }
+        let range = new Range(0,4);
+        
+        for(const item of range)
+        {
+            console.log('item ',item);
+        }
+       /*
+       let iterator = range[Symbol.iterator]();
+       console.log('Iterator ',iterator.next());
+       console.log('Iterator ',iterator.next());
+       console.log('Iterator ',iterator.next());
+       console.log('Iterator ',iterator.next());
+       console.log('Iterator ',iterator.next());
+       */
+    </script>
+</html>

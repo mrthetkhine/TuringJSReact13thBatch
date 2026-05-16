@@ -1,0 +1,63 @@
+<html>
+    
+    <script>
+        console.log('LocalCompare  appple banana ','appple'.localeCompare('banana') );
+        console.info('Info');
+        console.debug('debug');
+        console.warn('warn');
+        console.error('error');
+        console.trace('trace');
+
+        console.assert(1 < 0,'1 > 0')
+        function greet(msg)
+        {
+            console.assert(arguments.length>0,'Arguement length must be greater than zero');
+        }
+        greet('hello');
+        console.clear();
+        let obj = {
+            name :'Jhon',
+            age :31,
+            address :'Someehre'
+        };
+
+        console.table(obj);
+
+        function fun1()
+        {
+            console.log('fun 1');
+            fun2();
+        }
+        function fun2()
+        {
+            console.log('fun 2');
+            fun3();
+        }
+        function fun3()
+        {
+            console.trace('fun 3');
+        }
+        fun1();
+        console.time('start');
+        function hello()
+        {
+            console.count('Hello');
+        }
+        hello();
+        console.log('another');
+        hello();
+        console.countReset('Hello');
+
+        hello();
+
+        console.group('Level1');
+        console.group('Level 2');
+        console.groupCollapsed('collapese');
+        console.groupEnd();
+        console.groupEnd();
+        console.timeLog('start');
+        console.timeEnd('start');
+
+        console.log('%s %d ','hello',123.12);
+    </script>
+</html>

@@ -1,0 +1,32 @@
+<html>
+    <body>
+        <div id="clock">
+
+        </div>
+        <button type="button" id="clearTimeout">Clear Timeout</button>
+        <button type="button" id="clearInterval">Clear Interval</button>
+    </body>
+    <script>
+        let timeoutTimer =  setTimeout(function(){
+           console.log('Run after 2 secs'); 
+        },5000);
+        console.log('Hello');
+
+        document.getElementById('clearTimeout').addEventListener('click',function(){
+            clearTimeout(timeoutTimer);
+        });
+
+        let timer = setInterval(function(){
+           console.log('Run every 1 secs'); 
+            document.getElementById('clock').innerText = new Date();
+        },1000);
+
+        document.getElementById('clearInterval').addEventListener('click',function(){
+            clearInterval(timer);
+        });
+        queueMicrotask(() => {
+        // Logic to be executed as a microtask
+            console.log("This runs after current synchronous code, but before timeouts.");
+        });
+    </script>
+</html>

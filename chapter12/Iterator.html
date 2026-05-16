@@ -1,0 +1,26 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        
+        let items =[1,2,3,4];
+        for(const item of items)
+        {
+            console.log('item ',item);
+        }
+        let iterable = [100,200];
+        let iterator = iterable[Symbol.iterator]();
+        /*
+        console.log('iterator ',iterator.next());
+        console.log('iterator ',iterator.next());    
+        console.log('iterator ',iterator.next());
+        */ 
+       /*
+        for(let result = iterator.next(); !result.done ;result=iterator.next())
+        {
+            console.log('Item ',result.value);
+        }
+        */
+    </script>
+</html>
