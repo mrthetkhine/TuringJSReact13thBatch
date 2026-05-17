@@ -1,0 +1,25 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        function doLater(a,b,callback)
+        {
+            setTimeout(()=>{
+                let result =a/b;
+                console.log('doLater result ',result);
+                callback(result);
+
+            },3000);
+        }
+        console.log('Start ');
+        doLater(10,2,processResult);
+
+        function processResult(result)
+        {
+            console.log('processResult result ',result);
+        }
+        console.log('end');
+        
+    </script>
+</html>

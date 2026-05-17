@@ -1,0 +1,25 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        function div(a,b)
+        {
+            return new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    if(isNaN(a) || isNaN( b))
+                    {
+                        reject('A  Or B is not a number');
+                    }
+                    let result = a/b;
+                    console.log('div result ',result);
+                    resolve(result);
+                },3000);
+            });
+            
+        }
+        div(10,2)
+            .then(data=>console.log('Sucess ',data),err=>console.log('Err ',err));
+            
+    </script>
+</html>

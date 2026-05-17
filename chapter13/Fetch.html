@@ -1,0 +1,24 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        function fetchTodo(url)
+        {
+            console.log('fetch start');
+            fetch(url)
+                .then(response=>response.json())
+                .then(json=>console.log('Todo data fetch',json))
+                .catch(err=>{
+                    console.log('error ',err);
+                })
+                .finally(()=>{
+                    console.log('finally');
+                });
+        }
+        console.log('start');
+        //fetchTodo('https://jsonplaceholder1.typicode.com/todos/1');
+        fetchTodo('https://jsonplaceholder.typicode.com/todos/1');
+        console.log('end');
+    </script>
+</html>

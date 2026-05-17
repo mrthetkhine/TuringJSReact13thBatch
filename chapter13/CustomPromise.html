@@ -1,0 +1,103 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        class MyPromise
+        {
+            /*
+                executor(resolve,reject)=>
+            */
+            handlers=[];
+            constructor(executor)
+            {
+                setTimeout(()=>{
+                    executor(this.resolve.bind(this),this.reject.bind(this));
+                },0);
+            }
+            resolve(data)
+            {
+                console.log('success ',data);
+                let success =true;    
+                for(let handler of this.handlers)
+                {
+                    try
+                    {
+                        if(success)
+                        {
+                           data = handler.success(data);
+                           success = true;
+                        }
+                        else
+                        {
+                            data = handler.error(data);
+                        }
+                    }
+                    catch(err)
+                    {
+                        success=false;
+                        data = err;
+                    }
+                    
+                    
+                }
+            }
+            reject(err)
+            {
+                console.log('Error ',err);
+                let success =false;    
+                for(let handler of this.handlers)
+                {
+                    try
+                    {
+                        if(success)
+                        {
+                           data = handler.success(data);
+                           success = true;
+                        }
+                        else
+                        {
+                            data = handler.error(data);
+                        }
+                    }
+                    catch(err)
+                    {
+                        success=false;
+                        data = err;
+                    }
+                    
+                    
+                }
+            }
+            then(success,error)
+            {
+                this.handlers.push({
+                    success,
+                    error
+                })
+                console.log('Handler ',this.handlers);
+                return this;
+            }
+        }
+        function div(a,b)
+        {
+            return new MyPromise((resolve,reject)=>{
+                console.log('start');  
+                setTimeout(()=>{
+                    if(isNaN(a) || isNaN( b))
+                    {
+                        reject('A  Or B is not a number');
+                    }
+                    let result = a/b;
+                    console.log('div result ',result);
+                    resolve(result);
+                },3000);
+            });
+        }    
+        div(10,2)
+            .then(data=>data+1,error=>{
+                throw new Error('How')
+            })
+            .then(data=>console.log('Success ',data),err=>console.log('Err ',err));
+    </script>
+</html>

@@ -1,0 +1,23 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        //Promise.resolve(1)
+        Promise.reject(1)
+            .then(data=>{
+                console.log('data ',data);
+                //return data +2; 
+                //throw new Error('Someerror');
+                //return new Error('Someerror');
+                return Promise.reject(new Error('Someerror'));
+            },err=>{
+                console.log('Err ',err);
+                return 100;
+            })
+            .then(data=>console.log('Second then ',data),err=>console.log('Second err ',err))
+            .catch(err=>{
+                console.log('Catch ',err);
+            });
+    </script>
+</html>

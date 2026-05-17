@@ -1,0 +1,26 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        function getTodo(url,callback)
+        {
+            let request = new XMLHttpRequest();
+            request.open('GET',url);
+            request.onload = function()
+            {
+                let data = JSON.parse(request.responseText);
+                console.log(data);
+                callback(data);
+            }
+            request.send();
+            request.onerror = function()
+            {
+                console.log('error');
+            }
+        }
+        console.log('start');
+        getTodo('https://jsonplaceholder.typicode.com/todos/1',(json)=>console.log('Todo data callback',json));
+        console.log('end');
+    </script>
+</html>

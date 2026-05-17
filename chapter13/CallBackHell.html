@@ -1,0 +1,28 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        /*
+            delay   3 +2
+            delay  result   firstResult/2
+        */
+        
+        function delayPlus(a,b,callback)
+        {
+            setTimeout(()=>{
+                let result = a+b;
+                console.log('result ',result);
+                callback(result);
+            },3000);
+        }
+        
+        delayPlus(3,2,function delayDiv(a){
+            setTimeout(()=>{
+                let result = a/2;
+                console.log('final result ',result);
+            },3000);
+        });
+        
+    </script>
+</html>
