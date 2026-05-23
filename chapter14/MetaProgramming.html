@@ -1,0 +1,32 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        let obj = {
+            name : "Jhon",
+            address: ""
+        };
+
+
+        function validate(obj)
+        {
+            for(const prop in obj)
+            {
+                let value = obj[prop];
+                if(typeof value === "string")
+                {
+                    if(value =="")
+                    {
+                        console.warn(`${prop} was empty`)
+                    }
+                }
+            }
+        }
+        validate(obj);
+        validate({
+            something:"",
+            another:"Hello"
+        })
+    </script>
+</html>

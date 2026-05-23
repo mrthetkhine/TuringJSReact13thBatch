@@ -1,0 +1,44 @@
+<html>
+    <body>
+       <div id="container">
+        Container
+       </div>
+       <div onclick="console.log('on Click')">
+        Another div
+       </div>
+       <button type="button" id="btnRemove">Remove</button>
+    </body>
+    
+    <script>
+        function handler1(event)
+        {
+            console.log('Container clicked ',event);
+        }
+        document.getElementById('container')
+                .addEventListener('click', handler1);
+        document.getElementById('container')
+                .addEventListener('click', function(event) {
+                    console.log('Container clicked 2',event);
+                });        
+        window.onload = function() {
+            console.log('Window loaded');
+        }
+
+        window.onload = function() {
+            console.log('Window loaded 2');
+        }
+        document.getElementById('btnRemove')
+                .addEventListener('click', function() {
+                    document.getElementById('container')
+                            .removeEventListener('click', handler1);
+                });
+        /*
+        document.addEventListener('mousemove', function(event) {
+            console.log('Document mousemove ',event);
+        });
+        */
+       document.addEventListener('click', function(event) {
+            console.log('Document click ',event);
+        }, {once: true});
+    </script>
+</html>

@@ -1,0 +1,33 @@
+<html>
+    <style>
+        .container {
+            background-color: lightgreen;
+        }
+        
+    </style>
+    <body>
+        <div id="parent" class="container">
+            Parent
+            <div id="container">
+                Container
+            </div>
+        </div>
+        <span class="container">
+            Another
+        </span>
+        <button type="button" id="btnFire">Fire</button>
+        <button type="button" id="btnDone">Done</button>
+        <a href="http://www.google.com" id="lnkGoogle">Google</a>
+        <input type="text"><br/>
+        <input type="textarea"/>
+    </body>
+    
+    <script>
+        console.log('querySelector ',document.querySelector('div'));
+        console.log('querySelectorAll ',document.querySelectorAll('div'));
+        console.log('querySelectorAll ',document.querySelectorAll('#container'));
+        console.log('querySelectorAll ',document.querySelectorAll('.container'));
+        console.log('querySelectorAll input[type="text"]',document.querySelectorAll('input[type="text"]'));
+        console.log('querySelectorAll input[type="textarea"]',document.querySelectorAll('input[type="textarea"]'));
+    </script>
+</html>

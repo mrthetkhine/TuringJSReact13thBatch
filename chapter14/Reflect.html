@@ -1,0 +1,36 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        let obj = {
+            name :"Jhon",
+            display()
+            {
+                console.log(`Name ${this.name}`);
+            }
+        }
+        let fun = obj.display;
+        let obj2 = {
+            name :"Mr Bean"
+        }
+        Reflect.apply(fun, obj2,[]);
+        class Human
+        {
+            constructor(name)
+            {
+                console.log('Human constructor');
+                this.name  =name;
+            }
+        }
+        let con = Human;
+        let obj3 = Reflect.construct(con,["Jhon"]);
+        console.log('obj3 ',obj3);
+
+        console.log('has ',Reflect.has(obj,"name"));
+        console.log('get ',Reflect.get(obj,"name"));
+        console.log('set ',Reflect.set(obj,"name","Bean"));
+        console.log('deleteProperty ',Reflect.deleteProperty(obj,"name"));
+        console.log('ownKeys ',Reflect.ownKeys(obj));
+    </script>
+</html>

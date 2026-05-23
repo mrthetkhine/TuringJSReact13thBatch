@@ -1,0 +1,39 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        let obj = {
+            name : "Jhon",
+            address: ""
+        };
+        Object.preventExtensions(obj);
+        console.log('Object isExtensible ',Object.isExtensible(obj));
+        obj.age = 30;
+
+        Object.seal(obj);
+
+        delete obj.name ;
+        console.log('Obj ',obj);
+        console.log('isSaeld ',Object.isSealed(obj));
+
+        obj.name = "Another";
+        console.log('Obj ',obj);
+
+        Object.freeze(obj);
+        obj.name = "Update";
+        console.log('Obj ',obj);
+
+        console.log('IsFrozen ',Object.isFrozen(obj));
+
+        let obj2 = Object.create({
+            x :100,
+            y :200,
+        })
+        console.log('Prototype of ',Object.getPrototypeOf(obj2));
+        Object.setPrototypeOf(obj2,{
+            z : 100
+        });
+        console.log('Obj2 ',obj2.z, ' Obj.x ',obj.x);
+    </script>
+</html>

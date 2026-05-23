@@ -1,0 +1,58 @@
+<html>
+    <body>
+        <div id="parent">
+            Parent
+            <div id="container">
+                Container
+            </div>
+        </div>
+        <button type="button" id="btnFire">Fire</button>
+        <button type="button" id="btnDone">Done</button>
+        <a href="http://www.google.com" id="lnkGoogle">Google</a>
+    </body>
+    
+    <script>
+        document.getElementById('parent')
+                .addEventListener('click', function(event) {
+                    console.log('Parent clicked ',event);
+                    console.log('Own event ',event.target==this);
+                },{
+                    capture: true
+                });
+        document.getElementById('container')
+                .addEventListener('click', function(event) {
+                    console.log('Container clicked 1 ',event);
+                    //event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    
+                },{
+                    capture: true
+                });
+        document.getElementById('container')
+                .addEventListener('click', function(event) {
+                    console.log('Container clicked 2 ',event);
+                });
+        document.getElementById('lnkGoogle')
+                .addEventListener('click', function(event) {
+                    console.log('Google link clicked ',event);
+                    event.preventDefault();
+                });
+        document.addEventListener('contextmenu', function(event) {
+                    console.log('Right clicked ',event);
+                    event.preventDefault();
+                });
+        document.getElementById('btnFire')
+                .addEventListener('click', function() {
+                    let event = new Event('click');
+                    document.getElementById('container').dispatchEvent(event);
+                });
+        document.addEventListener('done', function(event) {
+                    console.log('Document done ',event);
+                });
+        document.getElementById('btnDone')
+                .addEventListener('click', function() {
+                    let event = new CustomEvent('done');
+                    document.dispatchEvent(event);
+                });
+    </script>
+</html>

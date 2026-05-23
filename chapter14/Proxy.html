@@ -1,0 +1,44 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        let obj ={
+            total :100,
+            order()
+            {
+                console.log('Order processed');
+            },
+            payment()
+            {
+                console.log('Payment processed');
+            }
+        }
+        let proxy = new Proxy(obj,{
+            get(o, name, target) { 
+                //console.log('Objec ',o, ' Name ',name, ' target ',target);
+                if(typeof o[name] === "function") 
+                {
+                    console.log(`Method ${name} was called `);
+                }
+                return o[name];
+            },
+            set(o,name,value)
+            {
+                console.log('Set ',name,value);
+                o[name] = value;
+               
+            },
+            has(o,name)
+            {
+                console.log('Has ',name);
+                return name in o;
+            }
+        });
+        proxy.order();
+        proxy.payment();
+        console.log('order' in proxy);
+        proxy.total = 200;
+        console.log('Total ',proxy.total);
+    </script>
+</html>

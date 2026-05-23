@@ -1,0 +1,42 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        let obj = {
+            name : "Jhon",
+            address: ""
+        };
+        Object.defineProperty(obj,"age",{
+            value :20,
+            enumerable : false,
+            writable : false,
+            configurable:false,
+        })
+        Object.defineProperties(obj,{
+            another:{
+                get()
+                {
+                    return 100;
+                },
+                set(value)
+                {
+                    console.log('Value ',value);
+                    this.another = value;
+                },
+                configurable : true
+            }
+        })
+        obj.age = 300;
+        
+        for(const prop in obj)
+        {
+            console.log('Prop ',prop);
+        }
+        delete obj.age;
+        console.log('Obj ',obj);
+        console.log('Attribute ',Object.getOwnPropertyDescriptors(obj));
+
+        console.log('Obj ',obj.another);
+    </script>
+</html>

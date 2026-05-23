@@ -1,0 +1,24 @@
+<html>
+    <body>
+        
+    </body>
+    <script>
+        let uint8 = { 
+            [Symbol.hasInstance](x) {
+                return Number.isInteger(x) && x >= 0 && x <= 255; 
+            }
+        };
+        console.log(128 instanceof uint8);
+        class EZArray extends Array {
+            get first() { return this[0]; }
+            get last() { return this[this.length-1]; } 
+        }
+        Object.defineProperty(EZArray, Symbol.species, {value:
+            Array});
+        let e = new EZArray(1,2,3);
+        let e2 = e.map(x=>x*2);
+        console.log('first ',e2.first, ' last ',e2.last);
+        
+        console.log('e2 instanceof EZArray ',e2 instanceof EZArray  );
+    </script>
+</html>
