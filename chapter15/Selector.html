@@ -6,15 +6,33 @@
         
     </style>
     <body>
+        <h1>First</h1>
         <div id="parent" class="container">
             Parent
             <div id="container">
                 Container
             </div>
         </div>
-        <span class="container">
-            Another
-        </span>
+        <div id="log">
+            Log container
+            <div>
+                Div under log 
+                <span class="container">
+                    Another
+                </span>
+            </div>
+            <span>
+                Span immediately after div
+            </span>
+            <div>
+                Div2 under log
+            </div>
+            <br/>
+            <span>
+                Another span
+            </span>
+        </div>
+        <h1>Second</h1>
         <button type="button" id="btnFire">Fire</button>
         <button type="button" id="btnDone">Done</button>
         <a href="http://www.google.com" id="lnkGoogle">Google</a>
@@ -29,5 +47,13 @@
         console.log('querySelectorAll ',document.querySelectorAll('.container'));
         console.log('querySelectorAll input[type="text"]',document.querySelectorAll('input[type="text"]'));
         console.log('querySelectorAll input[type="textarea"]',document.querySelectorAll('input[type="textarea"]'));
+
+        console.log('querySelectorAll #log span',document.querySelectorAll('#log span'));
+        console.log('querySelectorAll #log > div',document.querySelectorAll('#log >div'));
+        console.log('querySelectorAll body > h1:first-child',document.querySelectorAll('body > h1:first-child'));
+
+        console.log('querySelectorAll div + span',document.querySelectorAll('div + span'));
+        console.log('querySelectorAll div ~ span',document.querySelectorAll('div ~ span'));
+        console.log('querySelectorAll div, span',document.querySelectorAll('div,span'));
     </script>
 </html>

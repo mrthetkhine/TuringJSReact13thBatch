@@ -1,0 +1,24 @@
+<html>
+    <style>
+        .container {
+            background-color: lightgreen;
+        }
+    </style>    
+    <body>
+        
+        <div class="container">
+            <h1>H1 1</h1>
+            <h1>H1 2</h1>
+        </div>
+        <button type="button" id="btnDouble">Double</button>
+    </body>
+    
+    <script>
+        console.log('body ',document.body);
+        console.log('parent ',document.body.parentNode);
+        console.log('body firstElementChild ',document.body.firstElementChild);
+        console.log('body firstElementChild firstElementChild ',document.body.firstElementChild.firstElementChild);
+        console.log('body firstElementChild firstElementChild nextSibling ',document.body.firstElementChild.firstElementChild.nextSibling);
+        console.log('body firstElementChild firstElementChild nextSibling nextSibling ',document.body.firstElementChild.firstElementChild.nextSibling.nextSibling);
+    </script>
+</html>

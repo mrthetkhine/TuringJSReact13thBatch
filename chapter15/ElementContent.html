@@ -1,0 +1,68 @@
+<html>
+    <style>
+       
+    </style>    
+    <body>
+        
+        <div class="container" id="container">
+            Container
+        </div>
+        <button type="button" id="btnUpdate">Update</button>
+        <button type="button" id="btnCreate">Create</button>
+        <button type="button" id="btnUpdateStyle">UpdateStyle</button>
+        <div>
+            Another div
+        </div>
+    </body>
+    
+    <script>
+        document.getElementById('btnUpdate').addEventListener('click', function() {
+            console.log('Button clicked');
+            let container = document.querySelector('.container');
+            console.log('container ', container);
+            //container.innerHTML = "<h1>Updated Container</h1>";
+            //container.innerText = "<h1>Updated Container</h1>";
+            //container.textContent = "<h1>Updated Container</h1>";
+
+            //container.outerHTML = "<h1>Updated Container</h1>";
+            container.outerText = "<h1>Updated Container</h1>";
+        });
+        document.getElementById('btnCreate').addEventListener('click', function() {
+            console.log('Button clicked');
+            let h1 = document.createElement('h1');
+            h1.innerText = "New h1";
+            
+            let container = document.getElementById('container');
+            //container.appendChild(h1);
+            //container.append(h1);
+            //container.prepend(h1);
+            //container.before(h1);
+            container.after(h1);
+            //container.replaceWith(h1);
+            //container.remove();
+        });
+         let container = document.getElementById('container');
+        document.getElementById('btnUpdateStyle').addEventListener('click', function() {
+            console.log('Button clicked');
+           
+        
+            /*
+            container.style.backgroundColor = "lightblue";
+            container.style.color = "red";
+            */
+           //container.setAttribute('style', 'background-color: lightblue; color: red;');
+           container.style.cssText = 'background-color: lightblue; color: red;';
+        });
+        let styles = window.getComputedStyle(document.body);
+        console.log('styles ', styles);
+        console.log('bounding rect ',container.getBoundingClientRect());
+        document.addEventListener('click', function(event) {
+            console.log('event ', event);
+            //console.log('event target ', event.target);
+            //console.log('event clientX ', event.clientX);
+            //console.log('event clientY ', event.clientY);
+            let ele = document.elementFromPoint(event.clientX, event.clientY);
+            console.log('element from point ', ele);
+        });
+    </script>
+</html>

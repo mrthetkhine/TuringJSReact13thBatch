@@ -1,0 +1,35 @@
+<html>
+    <style>
+        .container {
+            background-color: lightgreen;
+        }
+    </style>    
+    <body>
+        
+        <div class="container">
+            <h1>H1 1</h1>
+            <h1>H1 2</h1>
+        </div>
+        <button type="button" id="btnDouble">Double</button>
+    </body>
+    
+    <script>
+        document.getElementById('btnDouble').addEventListener('click', function() {
+            console.log('Button clicked');
+            console.log('document.getElementsByTagName("h1") ',document.getElementsByTagName('h1'));
+            
+            for(let i=0, len =document.getElementsByTagName('h1').length ;i < len; i++) {
+                console.log('clone');
+                let span = document.createElement('h1');
+                span.innerText = "H1 "+(i+1);
+                document.querySelector('.container').appendChild(span);
+            }
+            
+        })
+        for(let i=0, init = (function(){
+            console.log('Initialized');
+            })(); i < 5; i++) {
+            console.log('i ',i);
+        }   
+    </script>
+</html>

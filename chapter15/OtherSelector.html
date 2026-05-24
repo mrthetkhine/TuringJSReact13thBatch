@@ -1,0 +1,29 @@
+<html>
+    <style>
+        .container {
+            background-color: lightgreen;
+        }
+    </style>    
+    <body>
+        <h1>Dummy</h1>
+        <div>
+            Another div
+        </div>
+        <input type="text" name="color"/>
+        <div class="container">
+            Container div
+        </div>
+        <form>
+            <input type="text" name="color"/>
+            <input type="submit" value="Submit"/>
+        </form>
+    </body>
+    
+    <script>
+        console.log('document.getElementsByName("color") ',document.getElementsByName('color'));
+        console.log('document.getElementsByTagName("div") ',document.getElementsByTagName('div'));
+        console.log('document.getElementsByClassName("container") ',document.getElementsByClassName('container'));
+
+        console.log('forms ',document.forms);
+    </script>
+</html>

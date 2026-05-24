@@ -1,0 +1,32 @@
+<html>
+    <style>
+        .container {
+            background-color: lightgreen;
+        }
+    </style>    
+    <body>
+        
+        <div class="container" id="container">
+            Container
+            <h1>H1 1</h1>
+            <h1>H1 2</h1>
+        </div>
+       <button type="button" id="btnChange">Change</button>
+    </body>
+    
+    <script>
+        let container = document.getElementById('container');
+        let btnChange = document.getElementById('btnChange');
+
+        btnChange.addEventListener('click', function() {
+            console.log('Button clicked');
+            let classList = container.classList;
+            console.log('classList ', classList);
+            if(classList.contains('container')) {
+                classList.remove('container');
+            } else {
+                classList.add('container');
+            }
+        });
+    </script>
+</html>

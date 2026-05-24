@@ -1,0 +1,32 @@
+<html>
+    <style>
+        .container {
+            background-color: lightgreen;
+        }
+        
+    </style>
+    <body>
+        <table id="tblData">
+            <tr data-section-number="1"> 
+                <td>Row1 Col1</td>
+                <td>Row1 Col2</td>
+            </tr>
+            <tr data-section-number="2">
+                <td>Row2 Col1</td>
+                <td>Row2 Col2</td>
+            </tr>
+            <tr data-section-number="3">
+                <td>Row3 Col1</td>
+                <td>Row3 Col2</td>
+            </tr>
+        </table>
+    </body>
+    
+    <script>
+        document.getElementById('tblData')
+        .addEventListener('click', function(event) {
+            let row = event.target.closest("tr");
+            console.log('Row clicked ', row.dataset.sectionNumber);
+        });
+    </script>
+</html>
