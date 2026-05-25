@@ -1,0 +1,19 @@
+<html>
+    <body>
+      
+    </body>
+    
+    <script>
+       let name = sessionStorage.username;
+       if (!name) {
+            name = prompt("What is your name?");
+           sessionStorage.username = name;
+       }
+       console.log('Name ',name);
+
+       window.addEventListener('storage',(event)=>{
+           console.log('Storage event ',event);
+       });
+       console.log('cookies ',document.cookie);
+    </script>
+</html>

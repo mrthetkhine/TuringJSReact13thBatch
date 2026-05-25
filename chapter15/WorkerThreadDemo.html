@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <script>
+
+    let worker = new Worker("worker.js");
+    console.log('Message sent to worker thread');
+    worker.postMessage({ value: 5 });
+   
+    worker.onmessage = (event) => {
+      console.log('Message received in main thread:', event.data);
+    };
+    document.addEventListener('click', (event) => {
+      console.log('Click ',event);
+    });
+  </script>
+</head>
+</html>
