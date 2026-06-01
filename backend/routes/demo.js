@@ -87,6 +87,20 @@ router.get('/login', function(req, res,next) {
     res.send('login route');
 });
 //illustrate security loophole
+router.get('/sendFile', function(req, res,next){
+    const fileName = req.query.name;
+    console.log('fileName ', fileName);
+    let file = path.resolve(fileName);
+    console.log('File ',file);
+    if(fileName.includes('..'))
+    {
+        res.status(401).send('Unauthorized');
+        return;
+    }
+    else {
+        next();
+    }
+});
 router.get('/sendFile', function(req, res,next) {
 
     const fileName = req.query.name;
@@ -109,14 +123,33 @@ router.get('/sendFile', function(req, res,next) {
     });
     */
 
-    let p = './../public/hello.txt';
+    let p = './public/'+fileName;
+
     console.log('resolve ',path.resolve(p));
-    res.sendFile('./../public/hello.txt',{},(err,data)=>{
+    let fName = path.resolve(p);
+    res.sendFile(fName,undefined,(err,data)=>{
         if (err) {
+            console.log(err);
             next(err)
         } else {
             console.log('Sent:' )
         }
     });
+});
+//illustrate security loophole
+router.get('/download', function(req, res,next) {
+    const fileName = req.query.name;
+    let p = './public/'+fileName;
+    let fName = path.resolve(p);
+    res.download(fName,(err)=>{
+        if (err) {
+            console.log(err);
+            next(err)
+        }
+        else
+        {
+            console.log('Download:' )
+        }
+    })
 });
 module.exports = router;
