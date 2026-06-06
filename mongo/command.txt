@@ -90,12 +90,13 @@ db.inventory.insertOne({
 db.inventory.insertOne({ 
     item: "journal", qty: 40, size: { h: 14, w: 21, uom: "cm" }, status: "C" }
 );
+//AND
 db.inventory.find({
     item:"journal",
     qty:20,
 })
 
-db.inventory.find( {  qty: { $gt: 30 } } )
+db.inventory.find( {  qty: { $gte: 30 } } )
 
 db.inventory.find({  
     qty: { $gt: 30 },
@@ -116,6 +117,14 @@ db.inventory.find( { $or:[
 //or 
 db.inventory.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } )
 
+//qty >=50 AND qty <=100
+db.inventory.find( { 
+    qty:{
+        $gte:50,
+        $lte:100
+    }
+ })
+
 //status='A' AND ( qty <30 OR item )
 db.inventory.find( {
      status: "A",
@@ -128,7 +137,11 @@ db.inventory.find({
     $not:/journal/
   }
 });
-
+db.inventory.find({
+  item:{
+    $ne:'journal'
+  }
+});
 db.inventory.insertMany([
    { item: "journal", qty: 25, tags: ["blank", "red"], dim_cm: [ 14, 21 ] },
    { item: "notebook", qty: 50, tags: ["red", "blank"], dim_cm: [ 14, 21 ] },
@@ -160,6 +173,20 @@ db.inventory.insertMany( [
 //exact match 
 db.inventory.find( { "instock": { warehouse: "A", qty: 5 } } )
 
+db.inventory.find( { "instock": {  qty: 5,warehouse: "A" } } )
+
+db.inventory.find( { "instock.qty":5, "instock.warehouse": "A"  } )
+
+db.inventory.find( {
+     "instock":{
+        $elemMatch:{
+            qty:5,
+            warehouse:"A"
+        }
+     }, 
+    
+})
+
 //notworking 
 db.inventory.find( { size: {  w: 21,h: 14, uom: "cm" } } )
 
@@ -181,9 +208,9 @@ db.todos.find({
 })
 
 db.todos.updateOne(
-  {_id: ObjectId('69637f4579ec35a87b1a57b6')},
+  {_id: ObjectId('6a1d9959add1d586280e3d2a')},
   [
-     { $set: { "title": "Todo 4 updated"} },
+     { $set: { "title": "Todo 1 updated"} },
      { $unset:["user"]}
  ]
 )
@@ -199,5 +226,5 @@ db.todos.updateMany(
 )
 
 db.todos.deleteOne({
-    _id:ObjectId('69637f4579ec35a87b1a57b6')
+    _id:ObjectId('6a1d99cfadd1d586280e3d2c')
 })

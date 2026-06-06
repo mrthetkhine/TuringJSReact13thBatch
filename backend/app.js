@@ -4,11 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const customLogger = require('./middlewares/logger');
+const mongoose = require('mongoose');
+const { db } = require('./config/database');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 let demoRouter = require('./routes/demo');
+let todoRouter = require('./routes/todos')
 var app = express();
+
+mongoose.connect(db).then(() => console.log('MongoDB connected!'))
+    .catch(err => console.log(err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/demo', demoRouter);
+app.use('/api/todos', todoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
