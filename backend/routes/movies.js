@@ -1,10 +1,14 @@
 let express = require('express');
 let router = express.Router();
-const Movie = require('../controllers/MovieController');
+const movie = require('../controllers/MovieController');
 const {route} = require("express/lib/application");
 
-router.get('/',Movie.getAllMovies);
-router.get('/:id',Movie.getMovieById);
-router.post('/',Movie.saveMovie);
+router.get('/',movie.getAllMovies);
+router.get('/:id',movie.getMovieById);
+router.get('/year/:year',movie.getMovieByYear);
+router.get('/title/:title',movie.getMovieByTitle);
+router.post('/',movie.saveMovie);
+router.put('/:id',movie.updateMovie);
+router.delete('/:id',movie.deleteMovie);
 
 module.exports = router;

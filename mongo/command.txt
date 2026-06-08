@@ -228,3 +228,14 @@ db.todos.updateMany(
 db.todos.deleteOne({
     _id:ObjectId('6a1d99cfadd1d586280e3d2c')
 })
+
+db.reviews.aggregate([
+  {
+    $lookup: {
+      from: "movies",
+      localField: "movie",
+      foreignField: "_id",
+      as: "movie_obj"
+    }
+  }
+])
