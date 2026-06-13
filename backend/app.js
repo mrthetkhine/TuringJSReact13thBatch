@@ -14,6 +14,7 @@ const demoRouter = require('./routes/demo');
 const todoRouter = require('./routes/todos')
 const movieRouter = require('./routes/movies');
 const reviewRouter = require('./routes/reviews');
+
 var app = express();
 
 mongoose.connect(db).then(() => console.log('MongoDB connected!'))
@@ -31,8 +32,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 app.use('/demo', demoRouter);
+app.use('/api/users',usersRouter);
 app.use('/api/todos', todoRouter);
 app.use('/api/movies',movieRouter);
 app.use('/api/reviews',reviewRouter);
