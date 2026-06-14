@@ -2,6 +2,8 @@ const movieService = require("../services/MovieService");
 const util = require("./../util/AppError");
 async function getAllMovies(req,res)
 {
+    const user = req.user;
+    console.log('loggined user ',user);
     let movies = await movieService.getAllMovies();
     res.status(200).json({
         message: "Movies list returned",

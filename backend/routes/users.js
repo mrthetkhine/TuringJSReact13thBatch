@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const {verify,checkRole} = require('./../middlewares/auth');
 const user = require('./../controllers/UserController');
 
 /* GET users listing. */
@@ -7,7 +8,7 @@ const user = require('./../controllers/UserController');
   res.send('respond with a resource');
 });*/
 
-router.post('/register', user.registerUser);
+router.post('/register',verify,checkRole('admin'), user.registerUser);
 router.post('/login', user.login);
 
 module.exports = router;
