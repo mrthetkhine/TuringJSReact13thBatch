@@ -1,25 +1,25 @@
-export default function Profile({name,avatar})
+export default function Profile({person})
 {
    // const avatar = 'https://react.dev/images/docs/scientists/7vQD0fPs.jpg';
     //const name = 'Gregorio Y. Zara';
-    const person = {
+   /* const person = {
         name: 'Gregorio Y. Zara',
         theme: {
             backgroundColor: 'black',
             color: 'pink'
         }
-    };
+    };*/
     let style ={
         backgroundColor: 'black',
         color: 'pink',
         border:'3px solid lightgray',
     }
-    return(<div style={person.theme}>
+    return(<div style={style}>
         <h3>
-            {name}
+            {person.name}
         </h3>
         <img
-            src={avatar}
+            src={person.avatar}
             alt="Katherine Johnson"
         />
     </div>);
