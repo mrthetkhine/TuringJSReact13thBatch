@@ -11,6 +11,12 @@ import UserProfile from "@/app/components/conditional/UserProfile";
 import ListDemo from "@/app/components/list/ListDemo";
 import MyButton from "@/app/components/MyButton";
 import Bubble from "@/app/components/Bubble";
+import Counter from "@/app/components/Counter";
+import Parent from "@/app/components/Parent";
+import CounterTwo from "@/app/components/CounterTwo";
+import ImmutableDemo from "@/app/components/ImmutableDemo";
+import TodoItems from "@/app/components/TodoItems";
+import ItemEntry from "@/app/components/ItemEntry";
 export default function Home() {
 
    let style={
@@ -48,7 +54,14 @@ export default function Home() {
           {/*<MyButton onClick={()=>console.log("clicked")}>
               Button Label
           </MyButton>*/}
-          <Bubble/>
+          {/*<Bubble/>*/}
+         {/* <Counter />
+          <Counter />*/}
+          {/*<Parent/>*/}
+         {/* <CounterTwo/>*/}
+         {/* <ImmutableDemo/>*/}
+        {/*  <TodoItems/>*/}
+          <ItemEntry/>
       </main>
     </div>
   );
