@@ -17,6 +17,9 @@ import CounterTwo from "@/app/components/CounterTwo";
 import ImmutableDemo from "@/app/components/ImmutableDemo";
 import TodoItems from "@/app/components/TodoItems";
 import ItemEntry from "@/app/components/ItemEntry";
+import TabDemo from "@/app/components/tab/TabDemo";
+import TodoList from "@/app/components/TodoList";
+import DifferentRoot from "@/app/components/reconcilation/DifferentRoot";
 export default function Home() {
 
    let style={
@@ -61,7 +64,10 @@ export default function Home() {
          {/* <CounterTwo/>*/}
          {/* <ImmutableDemo/>*/}
         {/*  <TodoItems/>*/}
-          <ItemEntry/>
+         {/* <ItemEntry/>*/}
+         {/* <TabDemo/>*/}
+         {/* <TodoList/>*/}
+          <DifferentRoot/>
       </main>
     </div>
   );
