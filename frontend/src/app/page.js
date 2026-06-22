@@ -20,6 +20,13 @@ import ItemEntry from "@/app/components/ItemEntry";
 import TabDemo from "@/app/components/tab/TabDemo";
 import TodoList from "@/app/components/TodoList";
 import DifferentRoot from "@/app/components/reconcilation/DifferentRoot";
+import DifferentPosition from "@/app/components/reconcilation/DifferentPosition";
+import DifferentProperty from "@/app/components/reconcilation/DifferentProperty";
+import SamePosition from "@/app/components/reconcilation/SamePosition";
+import IndexKeyIssue from "@/app/components/reconcilation/IndexKeyIssue";
+import CounterWithReducer from "@/app/components/reducer/CounterWithReducer";
+import TodoWithReducer from "@/app/components/reducer/TodoWithReducer";
+import ContextDemo from "@/app/components/context/ContextDemo";
 export default function Home() {
 
    let style={
@@ -67,7 +74,14 @@ export default function Home() {
          {/* <ItemEntry/>*/}
          {/* <TabDemo/>*/}
          {/* <TodoList/>*/}
-          <DifferentRoot/>
+         {/* <DifferentRoot/>*/}
+         {/* <DifferentPosition/>*/}
+         {/* <DifferentProperty/>*/}
+         {/* <SamePosition/>*/}
+         {/* <IndexKeyIssue/>*/}
+         {/* <CounterWithReducer/>*/}
+         {/* <TodoWithReducer/>*/}
+          <ContextDemo/>
       </main>
     </div>
   );

@@ -17,15 +17,19 @@ export default function Counter()
         c--;
     }
     return (<div>
-        <button onClick={increment}>+</button>
+
         <h3>
+            <button onClick={increment}>+</button>
+            &nbsp;
             {
                 counter
             }
+            &nbsp;
+            <button onClick={decrement}>-</button>
         </h3>
 
-        <button onClick={decrement}>-</button>
-        <h3>Another {another}</h3>
-        <button onClick={()=>setAnother(another+1)}>Inc Another</button>
+
+       {/* <h3>Another {another}</h3>
+        <button onClick={()=>setAnother(another+1)}>Inc Another</button>*/}
     </div>);
 }

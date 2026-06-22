@@ -19,7 +19,7 @@ function getNextId()
 {
     return id++;
 }
-function TodoEntry({onAddTodo})
+export function TodoEntry({onAddTodo})
 {
     const [todoText, setTodoText] = useState("");
     const handleKeyDown = (event) => {
@@ -38,8 +38,8 @@ function TodoEntry({onAddTodo})
     </div>);
 }
 
-function TodoItem({todo,onDeleteTodo,onUpdateTodo}) {
-    console.log('Todo ',todo);
+export function TodoItem({todo,onDeleteTodo,onUpdateTodo}) {
+    //console.log('Todo ',todo);
     const [editing, setEditing] = useState(false);
     const [todoText, setTodoText] = useState(todo.title);
     const onDoubleClick = (event) => {
