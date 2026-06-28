@@ -27,6 +27,8 @@ import IndexKeyIssue from "@/app/components/reconcilation/IndexKeyIssue";
 import CounterWithReducer from "@/app/components/reducer/CounterWithReducer";
 import TodoWithReducer from "@/app/components/reducer/TodoWithReducer";
 import ContextDemo from "@/app/components/context/ContextDemo";
+import TodoListWithContextDemo from "@/app/components/context/TodoListWithContextDemo";
+import FilterableProductDemo from "@/app/components/ProductDemo/FilterableProductDemo";
 export default function Home() {
 
    let style={
@@ -81,7 +83,9 @@ export default function Home() {
          {/* <IndexKeyIssue/>*/}
          {/* <CounterWithReducer/>*/}
          {/* <TodoWithReducer/>*/}
-          <ContextDemo/>
+         {/* <ContextDemo/>*/}
+        {/*  <TodoListWithContextDemo/>*/}
+          <FilterableProductDemo/>
       </main>
     </div>
   );
