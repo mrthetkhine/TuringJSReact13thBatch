@@ -29,6 +29,16 @@ import TodoWithReducer from "@/app/components/reducer/TodoWithReducer";
 import ContextDemo from "@/app/components/context/ContextDemo";
 import TodoListWithContextDemo from "@/app/components/context/TodoListWithContextDemo";
 import FilterableProductDemo from "@/app/components/ProductDemo/FilterableProductDemo";
+import WhyRef from "@/app/components/WhyRef";
+import Timer from "@/app/components/Timer";
+import FocusInput from "@/app/components/FocusInput";
+import MyInputParent from "@/app/components/MyInputParent";
+import VideoPlayer from "@/app/components/VideoPlayer";
+import EffectDemo from "@/app/components/effect/EffectDemo";
+import Clock from "@/app/components/effect/Clock";
+import CleanUp from "@/app/components/effect/CleanUp";
+import TodoWithFetch from "@/app/components/effect/TodoWithFetch";
+import UserWithFetch from "@/app/components/hook/UserWithFetch";
 export default function Home() {
 
    let style={
@@ -85,7 +95,19 @@ export default function Home() {
          {/* <TodoWithReducer/>*/}
          {/* <ContextDemo/>*/}
         {/*  <TodoListWithContextDemo/>*/}
-          <FilterableProductDemo/>
+        {/*  <FilterableProductDemo/>*/}
+        {/*  <WhyRef/>*/}
+        {/*  <Timer/>*/}
+       {/*   <FocusInput/>*/}
+        {/*  <MyInputParent/>*/}
+         {/* <VideoPlayer/>*/}
+         {/* <EffectDemo/>*/}
+        {/*  <Clock/>*/}
+         {/* <CleanUp/>*/}
+          <UserWithFetch/>
+          <h1>TOdos</h1>
+          <TodoWithFetch/>
+
       </main>
     </div>
   );
