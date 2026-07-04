@@ -1,10 +1,11 @@
 import {useRef, useState} from "react";
+import useCustomRef from "@/app/components/hook/useCustomRef";
 
 export default function WhyRef()
 {
     console.log('Why Ref render');
     const [counter,setCounter] = useState(0);
-    const num = useRef(0);
+    const num = useCustomRef(0);
 
     console.log('Num ',num);
     const updateNumber = ()=>{

@@ -39,6 +39,14 @@ import Clock from "@/app/components/effect/Clock";
 import CleanUp from "@/app/components/effect/CleanUp";
 import TodoWithFetch from "@/app/components/effect/TodoWithFetch";
 import UserWithFetch from "@/app/components/hook/UserWithFetch";
+import FragmentDemo from "@/app/components/FragmentDemo";
+import SimpleLoginForm from "@/app/components/form/SimpleLoginForm";
+import SimpleForm from "@/app/components/form/SimpleForm";
+import SimpleFormWithCustomHook from "@/app/components/form/SimpleFormWithCustomHook";
+import SignupForm from "@/app/components/form/SignupForm";
+import WhyHocDemo from "@/app/components/patterns/hoc/WhyHocDemo";
+import WithHOC from "@/app/components/patterns/hoc/WithHOC";
+import WithLoggerHOC from "@/app/components/patterns/hoc/WithLoggerHOC";
 export default function Home() {
 
    let style={
@@ -92,22 +100,29 @@ export default function Home() {
          {/* <SamePosition/>*/}
          {/* <IndexKeyIssue/>*/}
          {/* <CounterWithReducer/>*/}
-         {/* <TodoWithReducer/>*/}
+        {/*  <TodoWithReducer/>*/}
          {/* <ContextDemo/>*/}
         {/*  <TodoListWithContextDemo/>*/}
         {/*  <FilterableProductDemo/>*/}
-        {/*  <WhyRef/>*/}
+       {/*   <WhyRef/>*/}
         {/*  <Timer/>*/}
        {/*   <FocusInput/>*/}
         {/*  <MyInputParent/>*/}
          {/* <VideoPlayer/>*/}
          {/* <EffectDemo/>*/}
-        {/*  <Clock/>*/}
+       {/*   <Clock/>*/}
          {/* <CleanUp/>*/}
-          <UserWithFetch/>
+          {/*<UserWithFetch/>
           <h1>TOdos</h1>
-          <TodoWithFetch/>
-
+          <TodoWithFetch/>*/}
+        {/*<FragmentDemo/>*/}
+         {/* <SimpleLoginForm/>*/}
+         {/* <SimpleForm/>*/}
+          {/*<SimpleFormWithCustomHook/>*/}
+          {/*<SignupForm/>*/}
+          {/*<WhyHocDemo/>*/}
+          <WithHOC/>
+          <WithLoggerHOC/>
       </main>
     </div>
   );
