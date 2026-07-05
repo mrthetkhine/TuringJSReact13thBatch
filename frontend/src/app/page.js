@@ -47,6 +47,10 @@ import SignupForm from "@/app/components/form/SignupForm";
 import WhyHocDemo from "@/app/components/patterns/hoc/WhyHocDemo";
 import WithHOC from "@/app/components/patterns/hoc/WithHOC";
 import WithLoggerHOC from "@/app/components/patterns/hoc/WithLoggerHOC";
+import WhyRenderProp from "@/app/components/patterns/render_property/WhyRenderProp";
+import RenderProp from "@/app/components/patterns/render_property/RenderProp";
+import RouterDemo from "@/app/components/router/RouterDemo";
+import DataGridDemo from "@/app/components/datagrid/DataGridDemo";
 export default function Home() {
 
    let style={
@@ -54,8 +58,8 @@ export default function Home() {
    }
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <div >
+      <main >
 
        {/* <HelloWorld/>
         <HelloWorld/>
@@ -121,8 +125,12 @@ export default function Home() {
           {/*<SimpleFormWithCustomHook/>*/}
           {/*<SignupForm/>*/}
           {/*<WhyHocDemo/>*/}
-          <WithHOC/>
-          <WithLoggerHOC/>
+         {/* <WithHOC/>
+          <WithLoggerHOC/>*/}
+         {/* <WhyRenderProp/>*/}
+         {/* <RenderProp/>*/}
+          {/*<RouterDemo/>*/}
+          <DataGridDemo/>
       </main>
     </div>
   );
