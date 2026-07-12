@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { StoreProvider } from "./StoreProvider";
@@ -5,6 +6,7 @@ import { Nav } from "./components/Nav";
 
 import "./styles/globals.css";
 import styles from "./styles/layout.module.css";
+import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 
 interface Props {
   readonly children: ReactNode;
@@ -18,17 +20,9 @@ export default function RootLayout({ children }: Props) {
           <section className={styles.container}>
             <Nav />
 
-            <header className={styles.header}>
-              <Image
-                src="/logo.svg"
-                className={styles.logo}
-                alt="logo"
-                width={100}
-                height={100}
-              />
-            </header>
-
-            <main className={styles.main}>{children}</main>
+            <AppRouterCacheProvider>
+            <main >{children}</main>
+            </AppRouterCacheProvider>
 
             <footer className={styles.footer}>
               <span>Learn </span>

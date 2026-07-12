@@ -3,14 +3,23 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@hookform/resolvers": "^5.4.0",
+    "@mui/material": "^9.2.0",
+    "@mui/material-nextjs": "^9.1.1",
     "@reduxjs/toolkit": "^2.2.0",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^9.1.0"
+    "react-hook-form": "^7.81.0",
+    "react-redux": "^9.1.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "20.2.5",
