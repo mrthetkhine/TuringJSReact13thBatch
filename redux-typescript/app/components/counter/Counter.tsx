@@ -23,6 +23,7 @@ export const Counter = () => {
 
   const incrementValue = Number(incrementAmount) || 0;
 
+  console.log('increment ',increment());
   return (
     <div>
       <div className={styles.row}>

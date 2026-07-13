@@ -1,7 +1,7 @@
 'use client';
 import {useState, KeyboardEvent, MouseEvent, useReducer} from "react";
 
-interface Todo
+export interface Todo
 {
     id: number;
     title: string;
@@ -36,7 +36,7 @@ interface TodoItemProps {
     onDeleteTodo:(todo:Todo) => void,
     onUpdateTodo:(todo:Todo) => void,
 }
-function TodoItem({todo,onDeleteTodo,onUpdateTodo}:TodoItemProps) {
+export function TodoItem({todo,onDeleteTodo,onUpdateTodo}:TodoItemProps) {
     //console.log('Todo ',todo);
     const [editing, setEditing] = useState(false);
     const [todoText, setTodoText] = useState(todo.title);
