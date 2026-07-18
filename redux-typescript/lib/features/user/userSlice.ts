@@ -26,7 +26,7 @@ export const userSlice = createAppSlice({
 
         deleteUser: create.reducer(
             (state, action: PayloadAction<Todo>) => {
-                state.users = state.users.filter(user=>user.id!==action.payload.id);
+                state.users = state.users.filter(user=>user.id!==action.payload._id);
             },
         ),
         loadAllUser: create.asyncThunk(

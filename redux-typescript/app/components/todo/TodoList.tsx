@@ -16,7 +16,7 @@ export default function TodoList()
         console.log('Add Todo ',title);
 
         const newTodo = {
-            id: getNextId(),
+            _id: getNextId(),
             title: title,
             completed: true,
         };
@@ -36,7 +36,7 @@ export default function TodoList()
     return(<div>
         <TodoEntry onAddTodo={addTodoHandler}/>
         {
-            todos.map(td=><TodoItem key={td.id}
+            todos.map(td=><TodoItem key={td._id}
                                           todo={td}
                                           onDeleteTodo={onDeleteHandler}
                                           onUpdateTodo={onUpdateTodoHandler}

@@ -3,7 +3,8 @@ import {useState, KeyboardEvent, MouseEvent, useReducer} from "react";
 
 export interface Todo
 {
-    id: number;
+    _id: number|string;
+
     title: string;
     completed: boolean;
 }
@@ -15,17 +16,17 @@ function getNextId()
 }
 const initTodos:Todo[] = [
     {
-        id:1,
+        _id:1,
         title:'Task 1',
         completed:true
     },
     {
-        id:2,
+        _id:2,
         title:'Task 2',
         completed:true
     },
     {
-        id:3,
+        _id:3,
         title:'Task 3',
         completed:true
     },
@@ -47,7 +48,7 @@ export function TodoItem({todo,onDeleteTodo,onUpdateTodo}:TodoItemProps) {
     const handleKeyDown = (event:KeyboardEvent<HTMLElement>) => {
         if (event.key === 'Enter') {
             onUpdateTodo({
-                id:todo.id,
+                _id:todo._id,
                 title : todoText,
                 completed:true,
             });
@@ -115,12 +116,12 @@ function todoReducer(state:TodoState, action:TodoAction):TodoState
             };
         case "UPDATE_TODO":
             return {
-                todos:state.todos.map(td=>td.id===action.payload.id?action.payload:td)
+                todos:state.todos.map(td=>td._id===action.payload._id?action.payload:td)
             }
 
         case "DELETE_TODO":
             return {
-                todos: state.todos.filter(td => td.id !== action.payload.id)
+                todos: state.todos.filter(td => td._id !== action.payload._id)
             }
     }
 }
@@ -133,7 +134,7 @@ export default function TodoWithReducer()
       dispatch({
           type:"ADD_TODO",
           payload: {
-              id: getNextId(),
+              _id: getNextId(),
               title,
               completed:true,
           }
@@ -157,7 +158,7 @@ export default function TodoWithReducer()
     return (<div>
         <TodoEntry onAddTodo={addTodoHandler}/>
         {
-            state.todos.map(td=><TodoItem key={td.id}
+            state.todos.map(td=><TodoItem key={td._id}
                                     todo={td}
                                     onDeleteTodo={onDeleteHandler}
                                     onUpdateTodo={onUpdateTodoHandler}

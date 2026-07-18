@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors');
+
 const customLogger = require('./middlewares/logger');
 const mongoose = require('mongoose');
 const { db } = require('./config/database');
@@ -24,6 +26,7 @@ mongoose.connect(db).then(() => console.log('MongoDB connected!'))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cors());
 app.use(customLogger);
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,7 +38,7 @@ app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 app.use('/demo', demoRouter);
 app.use('/api/users',usersRouter);
-app.use('/api/todos', verify,todoRouter);
+app.use('/api/todos', /*verify,*/todoRouter);
 app.use('/api/movies',verify,movieRouter);
 app.use('/api/reviews',verify,reviewRouter);
 

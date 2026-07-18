@@ -10,17 +10,17 @@ export interface TodoState {
 
 const initTodos:Todo[] = [
     {
-        id:1,
+        _id:1,
         title:'Task 1',
         completed:true
     },
     {
-        id:2,
+        _id:2,
         title:'Task 2',
         completed:true
     },
     {
-        id:3,
+        _id:3,
         title:'Task 3',
         completed:true
     },
@@ -42,12 +42,12 @@ export const todoSlice = createAppSlice({
         ),
         updateTodo: create.reducer(
             (state, action: PayloadAction<Todo>) => {
-                state.todos = state.todos.map(td=>td.id===action.payload.id?action.payload:td);
+                state.todos = state.todos.map(td=>td._id===action.payload._id?action.payload:td);
             },
         ),
         deleteTodo: create.reducer(
             (state, action: PayloadAction<Todo>) => {
-                state.todos = state.todos.filter(td=>td.id!==action.payload.id);
+                state.todos = state.todos.filter(td=>td._id!==action.payload._id);
             },
         ),
     }),

@@ -23,7 +23,7 @@ export default function IndexPage() {
   {/*  <FormDemo/>*/}
   {/*  <Counter/>*/}
    {/* <TodoWithReducer/>*/}
-    <UserList/>
+   {/* <UserList/>*/}
     <TodoCount/>
     <TodoList/>
   </div>);
