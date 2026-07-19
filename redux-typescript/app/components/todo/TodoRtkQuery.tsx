@@ -1,14 +1,22 @@
 import {useGetQuotesQuery} from "@/lib/features/quotes/quotesApiSlice";
-import {useDeleteTodoMutation, useGetTodosQuery} from "@/lib/features/todo/todoApiSlice";
-import {addTodo, deleteTodo, updateTodo} from "@/lib/features/todo/todoSlice";
+import {useDeleteTodoMutation, useGetTodosQuery, useSaveTodoMutation,useUpdateTodoMutation} from "@/lib/features/todo/todoApiSlice";
 import {Todo, TodoEntry, TodoItem} from "@/app/components/TodoWithReducer";
 
 export default function TodoRtkQuery()
 {
-    const { data:todos, isError, isLoading, isSuccess } = useGetTodosQuery(undefined);
+    const { data:todos, isError, isLoading, isSuccess,refetch } = useGetTodosQuery(undefined,{
+        //pollingInterval: 3000,
+    });
     const [deleteTodo, result] = useDeleteTodoMutation();
+    const [saveTodo,saveTodoResult] = useSaveTodoMutation();
+    const [updateTodo,updateTodoResult] = useUpdateTodoMutation();
     const addTodoHandler=(title:string)=>{
         console.log('Add Todo ',title);
+        const newTodo:Todo = {
+            title,
+            completed:true
+        }
+        saveTodo(newTodo);
 
     };
 
@@ -19,7 +27,10 @@ export default function TodoRtkQuery()
     }
     const onUpdateTodoHandler =(todo:Todo)=>{
         console.log('Update todo ',todo);
-
+        updateTodo(todo)
+            .then((data)=>{
+                console.log('todo updated',data);
+            });
     };
     if (isError) {
         return (
@@ -36,13 +47,21 @@ export default function TodoRtkQuery()
             </div>
         );
     }
-    console.log('is success ',isSuccess, ' data ',todos?.data);
+    const refetchHandler=()=>{
+        refetch();
+    }
+    console.log('is success ',isSuccess, ' data ',todos);
     if (isSuccess) {
        return(
            <div>
+               <div>
+                   <button type="button" onClick={refetchHandler}>Refetch</button>
+               </div>
+
+
                <TodoEntry onAddTodo={addTodoHandler}/>
                {
-                   todos.data.map(td=><TodoItem key={td._id}
+                   todos.map(td=><TodoItem key={td._id}
                                                 todo={td}
                                                 onDeleteTodo={onDeleteHandler}
                                                 onUpdateTodo={onUpdateTodoHandler}

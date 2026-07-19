@@ -12,7 +12,7 @@ import UserList from "@/app/components/user/UserList";
 
 export default function IndexPage() {
   return (<div>
-    {/*<Greet message={"Hi there!"} />*/}
+    <Greet message={"Hi there!"} />
    {/* */}
     {/*<Container>
       <GreetTwo message={"Hi there!"} />
@@ -24,8 +24,8 @@ export default function IndexPage() {
   {/*  <Counter/>*/}
    {/* <TodoWithReducer/>*/}
    {/* <UserList/>*/}
-    <TodoCount/>
-    <TodoList/>
+   {/* <TodoCount/>
+    <TodoList/>*/}
   </div>);
 }
 

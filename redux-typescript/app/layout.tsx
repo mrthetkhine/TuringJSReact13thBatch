@@ -21,7 +21,7 @@ export default function RootLayout({ children }: Props) {
             <Nav />
 
             <AppRouterCacheProvider>
-            <main >{children}</main>
+              <main >{children}</main>
             </AppRouterCacheProvider>
 
             <footer className={styles.footer}>

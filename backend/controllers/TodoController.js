@@ -56,9 +56,14 @@ async function saveTodo(req,res)
         data: savedTodo,
     });
 }
+async function delay(ms)
+{
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 async function deleteTodoById(req,res)
 {
     let id = req.params.id;
+    await delay(4000);
     let todo = await todoService.deleteTodoById(id);
     if(todo)
     {

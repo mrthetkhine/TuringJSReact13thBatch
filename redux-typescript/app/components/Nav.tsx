@@ -28,6 +28,12 @@ export const Nav = () => {
         >
             Todos
         </Link>
+        <Link
+            className={`${styles.link} ${pathname === "/" ? styles.active : ""}`}
+            href="/todocount"
+        >
+            Todos Count
+        </Link>
       <Link
         className={`${styles.link} ${
           pathname === "/verify" ? styles.active : ""

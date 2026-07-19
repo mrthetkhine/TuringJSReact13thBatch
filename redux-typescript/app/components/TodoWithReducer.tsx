@@ -3,8 +3,7 @@ import {useState, KeyboardEvent, MouseEvent, useReducer} from "react";
 
 export interface Todo
 {
-    _id: number|string;
-
+    _id?: number|string;
     title: string;
     completed: boolean;
 }
