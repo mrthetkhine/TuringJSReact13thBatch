@@ -30,6 +30,12 @@ export const Nav = () => {
         </Link>
         <Link
             className={`${styles.link} ${pathname === "/" ? styles.active : ""}`}
+            href="/movies"
+        >
+            Movies
+        </Link>
+        <Link
+            className={`${styles.link} ${pathname === "/" ? styles.active : ""}`}
             href="/todocount"
         >
             Todos Count

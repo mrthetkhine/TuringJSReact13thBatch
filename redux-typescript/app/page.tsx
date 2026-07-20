@@ -9,10 +9,12 @@ import FormDemo from "@/app/components/from/FormDemo";
 import TodoList from "@/app/components/todo/TodoList";
 import TodoCount from "@/app/components/todo/TodoCount";
 import UserList from "@/app/components/user/UserList";
+import ErrorBoundaryDemo from "@/app/components/ErrorBoundaryDemo";
 
 export default function IndexPage() {
   return (<div>
     <Greet message={"Hi there!"} />
+   {/* <ErrorBoundaryDemo />*/}
    {/* */}
     {/*<Container>
       <GreetTwo message={"Hi there!"} />
