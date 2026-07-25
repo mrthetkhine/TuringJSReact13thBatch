@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/backend.iml" filepath="$PROJECT_DIR$/.idea/backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/../frontend/.idea/frontend.iml" filepath="$PROJECT_DIR$/../frontend/.idea/frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/../redux-typescript/.idea/redux-typescript.iml" filepath="$PROJECT_DIR$/../redux-typescript/.idea/redux-typescript.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../rtk-mui-spa/spa/.idea/spa.iml" filepath="$PROJECT_DIR$/../rtk-mui-spa/spa/.idea/spa.iml" />
     </modules>
   </component>
 </project>
