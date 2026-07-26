@@ -32,7 +32,7 @@ export default function ConfirmDialog({
     onConfirm,
                                       }:ConfirmDialogProps) {
     const confirmHandler = ()=>{
-        handleClose();
+        onConfirm();
         handleClose();
     }
     return (

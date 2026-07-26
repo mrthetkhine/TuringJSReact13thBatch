@@ -11,7 +11,6 @@ export default function RtkQueryPage()
     return (
         <PageContainer title="Movies Page" description="this is Movies page">
             <DashboardCard title="Movies Page">
-
                 <MovieList/>
             </DashboardCard>
         </PageContainer>

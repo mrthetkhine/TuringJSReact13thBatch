@@ -8,8 +8,11 @@ import Paper from '@mui/material/Paper';
 import { Movie } from '@/lib/features/movies/movieApiSlice';
 import { Button } from '@mui/material';
 import * as React from "react";
+
 import ConfirmDialog from "@/app/(DashboardLayout)/components/shared/ConfirmDialog";
-import useConfirmDialog from '../../hooks/useConfirmDialog';
+import useDialog from '../../hooks/useDialog';
+import { useRef } from 'react';
+import MovieDlg from './MovieDlg';
 
 function createData(
     name: string,
@@ -90,30 +93,41 @@ const movies:Movie[] = [
     }
 ]
 export default function MovieList() {
-    //const [open, setOpen,handleClose] = useConfirmDialog();
-    const [open, setOpen] = React.useState(false);
+    const {open, setOpen,handleClose} = useDialog();
+    const {open:movieDlgOpen,
+            setOpen:moveDlgSetOpen,
+            handleClose:movieDlgHandleClose} = useDialog();
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    const movieToDeleteRef = useRef<Movie|undefined>(undefined);
 
-    const handleClose = () => {
-        setOpen(false);
-    };
-    const handleConfirm = ()=>{
-        console.log('Handle confirm ');
+    const onDeleteConfirm = ()=>{
+        console.log('Delete confirm ',movieToDeleteRef.current);
     }
-    const handleDelete = ()=>{
+    const handleShowDeleteDlg = (movie:Movie)=>{
+        movieToDeleteRef.current = movie;
         setOpen(true);
+
+    }
+    const handleShowMovieDlg = ()=>{
+        moveDlgSetOpen(true);
     }
     return (
         <div>
+            <MovieDlg open={movieDlgOpen}
+                      handleClose={movieDlgHandleClose}/>
+            <Button variant="contained"
+                    type={"button"}
+                    onClick={handleShowMovieDlg}>
+                New Movie
+            </Button>
             <ConfirmDialog
                 title={"Delete Movie"}
                 content={"Are you sure you want to delete movie"}
                 open={open}
-                onConfirm={handleConfirm}
+                onConfirm={onDeleteConfirm}
                 handleClose={handleClose} />
+
+
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -140,7 +154,7 @@ export default function MovieList() {
                                 <TableCell align="right">
                                     <Button variant="contained" type={"button"}>Edit</Button>
                                     &nbsp;
-                                    <Button variant="contained" type={"button"} onClick={()=>handleDelete()}>Delete</Button>
+                                    <Button variant="contained" type={"button"} onClick={()=>handleShowDeleteDlg(movie)}>Delete</Button>
                                     &nbsp;
                                     <Button variant="contained" type={"button"}>Details</Button>
                                 </TableCell>
