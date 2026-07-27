@@ -11,33 +11,56 @@ import {useForm,Controller, useFieldArray} from "react-hook-form";
 
 import {zodResolver} from "@hookform/resolvers/zod";
 import{movieSchema,MovieFormData} from "@/lib/schema/movieSchema";
+import { Movie } from "@/lib/features/movies/movieApiSlice";
+import {useEffect} from "react";
 interface MovieDlgProps {
 
     open: boolean;
     handleClose: () => void;
-
+    movieToEdit?:Movie;
 }
 
 export default function MovieDlg({
                                      open,
                                      handleClose,
+                                     movieToEdit
                                  }:MovieDlgProps) {
+    let defaultGenre:Array<{value:string}> =[];
+    if(movieToEdit?.genre){
+        defaultGenre = movieToEdit.genre.map(g=>({'value':g}));
+    }
+
+    console.log('MovieDlg movie to edit ',movieToEdit);
 
 
+    let defaultMovieValues = {
+        _id: movieToEdit?._id??'',
+        title:  movieToEdit?.title??'',
+        year: movieToEdit?.year??0,
+        director: {
+            _id:movieToEdit?.director?._id??'',
+            name: movieToEdit?.director?.name??'',
+        },
+        genre: defaultGenre
+        // Start with one initial field row
+    };
     const {
         register,
         handleSubmit,
         control,
+        reset,
         formState: { errors },
     } = useForm<MovieFormData>({
         resolver: zodResolver(movieSchema),
         mode: "onTouched",
-        defaultValues: {
-            genre: [{
-                value: "",
-            }] // Start with one initial field row
-        }
+        defaultValues: defaultMovieValues
     })
+    useEffect(() => {
+        console.log('MovieDlg useEffect ',movieToEdit);
+
+        console.log('default movie value ',defaultMovieValues);
+        reset(defaultMovieValues);
+    }, [movieToEdit]);
     const { fields:genreFields, append, remove } = useFieldArray<MovieFormData>({
         control,
         name: "genre"
@@ -46,6 +69,15 @@ export default function MovieDlg({
     const onError = (errors:any) => console.log("Validation Failed:", errors);
     console.log('errors ',errors);
 
+    const addGenreHandler = ()=>{
+        append({
+            value:""
+        });
+    }
+    const handleCancel=()=>{
+        reset();
+        handleClose();
+    }
     return (
         <React.Fragment>
 
@@ -96,20 +128,31 @@ export default function MovieDlg({
                         </div>
                         <div>
                             {
-                                genreFields.map((gf,index)=> <TextField
+                                genreFields.map((gf,index)=><Box
+                                    key={index}
+                                    sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                                    <TextField
                                     key={index}
                                     label="Genre"
-                                    fullWidth
+                                    size="small"
                                     margin="normal"
                                     {...register(`genre.${index}.value`)}
                                     error={!!errors.genre?.[index]?.value}
                                     helperText={errors.genre?.[index]?.value?.message}
-                                />)
+                                />
+                                    <Button onClick={()=>remove(index)} type={"button"}
+                                            variant={"contained"}
+                                            size="small"
+                                            sx={{ height: '40px' }}>Remove</Button>
+                                </Box> )
                             }
 
                         </div>
+                        <div>
+                            <Button onClick={addGenreHandler} type={"button"} variant={"contained"}>Add Genre</Button>
+                        </div>
                         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                            <Button onClick={handleClose} type={"button"}>Cancel</Button>
+                            <Button onClick={handleCancel} type={"button"}>Cancel</Button>
                             <Button type="submit" variant={"contained"}>
                                 Save
                             </Button>

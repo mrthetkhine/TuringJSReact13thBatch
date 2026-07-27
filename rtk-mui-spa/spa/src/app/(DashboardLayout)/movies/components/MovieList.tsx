@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import { Movie } from '@/lib/features/movies/movieApiSlice';
 import { Button } from '@mui/material';
 import * as React from "react";
-
+import { useRouter } from 'next/navigation';
 import ConfirmDialog from "@/app/(DashboardLayout)/components/shared/ConfirmDialog";
 import useDialog from '../../hooks/useDialog';
 import { useRef } from 'react';
@@ -93,12 +93,14 @@ const movies:Movie[] = [
     }
 ]
 export default function MovieList() {
+    const router = useRouter();
     const {open, setOpen,handleClose} = useDialog();
     const {open:movieDlgOpen,
             setOpen:moveDlgSetOpen,
             handleClose:movieDlgHandleClose} = useDialog();
 
     const movieToDeleteRef = useRef<Movie|undefined>(undefined);
+    const movieToEditRef = useRef<Movie|undefined>(undefined);
 
     const onDeleteConfirm = ()=>{
         console.log('Delete confirm ',movieToDeleteRef.current);
@@ -111,13 +113,27 @@ export default function MovieList() {
     const handleShowMovieDlg = ()=>{
         moveDlgSetOpen(true);
     }
+    const newMovieHandler = ()=>{
+        movieToEditRef.current = undefined;
+        moveDlgSetOpen(true);
+    }
+    const editHandler = (movie:Movie)=>{
+        console.log('movie to edit ',movie);
+        movieToEditRef.current =movie;
+        moveDlgSetOpen(true);
+    }
+    const detailHandler = (movie:Movie)=>{
+        console.log('Movie detail handler ',movie);
+        router.push(`/movies/${movie._id}`);
+    }
     return (
         <div>
             <MovieDlg open={movieDlgOpen}
+                      movieToEdit={movieToEditRef.current}
                       handleClose={movieDlgHandleClose}/>
             <Button variant="contained"
                     type={"button"}
-                    onClick={handleShowMovieDlg}>
+                    onClick={newMovieHandler}>
                 New Movie
             </Button>
             <ConfirmDialog
@@ -150,13 +166,13 @@ export default function MovieList() {
                                 </TableCell>
                                 <TableCell align="right">{movie.director.name}</TableCell>
                                 <TableCell align="right">{movie.year}</TableCell>
-                                <TableCell align="right">{movie.genre}</TableCell>
+                                <TableCell align="right">{movie?.genre?.toString()}</TableCell>
                                 <TableCell align="right">
-                                    <Button variant="contained" type={"button"}>Edit</Button>
+                                    <Button variant="contained" type={"button"} onClick={()=>editHandler(movie)}>Edit</Button>
                                     &nbsp;
                                     <Button variant="contained" type={"button"} onClick={()=>handleShowDeleteDlg(movie)}>Delete</Button>
                                     &nbsp;
-                                    <Button variant="contained" type={"button"}>Details</Button>
+                                    <Button variant="contained" type={"button"} onClick={()=>detailHandler(movie)}>Details</Button>
                                 </TableCell>
                             </TableRow>
                         ))}
