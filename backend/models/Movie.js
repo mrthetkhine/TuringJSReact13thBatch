@@ -14,7 +14,6 @@ const MovieSchema = new Schema({
             },
             phoneNo:{
                 type:String,
-                required:true,
             }
         }
     },

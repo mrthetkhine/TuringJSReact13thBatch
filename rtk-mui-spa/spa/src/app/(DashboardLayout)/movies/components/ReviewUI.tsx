@@ -8,10 +8,15 @@ import * as React from "react";
 interface ReviewUIProps
 {
     review:Review;
+    editHandler:(review:Review) => void;
+    handleShowDeleteDlg:(review:Review) => void;
 }
-export default function ReviewUI({review}:ReviewUIProps)
+export default function ReviewUI({review,editHandler,handleShowDeleteDlg}:ReviewUIProps)
 {
-    return( <Card sx={{ mb: 3 }}>
+
+    return( <>
+
+        <Card sx={{ mb: 3 }}>
         <CardContent>
             <Typography gutterBottom variant="h6" component="div">
                 {review.review}
@@ -20,11 +25,12 @@ export default function ReviewUI({review}:ReviewUIProps)
         </CardContent>
         <CardActions>
             <IconButton aria-label="edit" color="primary">
-                <EditIcon />
+                <EditIcon onClick={()=>editHandler(review)} />
             </IconButton>
             <IconButton aria-label="edit" color="primary">
-                <DeleteIcon />
+                <DeleteIcon onClick={()=>handleShowDeleteDlg(review)}/>
             </IconButton>
         </CardActions>
-    </Card>);
+    </Card>
+</>);
 }

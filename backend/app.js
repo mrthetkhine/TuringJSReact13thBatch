@@ -40,7 +40,7 @@ app.use('/demo', demoRouter);
 app.use('/api/users',usersRouter);
 app.use('/api/todos', /*verify,*/todoRouter);
 app.use('/api/movies',/*verify,*/movieRouter);
-app.use('/api/reviews',verify,reviewRouter);
+app.use('/api/reviews',/*verify,*/reviewRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

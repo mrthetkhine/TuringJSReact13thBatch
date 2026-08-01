@@ -11,27 +11,39 @@ import {useForm,Controller, useFieldArray} from "react-hook-form";
 
 import {zodResolver} from "@hookform/resolvers/zod";
 import{movieSchema,MovieFormData} from "@/lib/schema/movieSchema";
-import { Movie } from "@/lib/features/movies/movieApiSlice";
+import {Movie, useSaveMovieMutation, useUpdateMovieMutation} from "@/lib/features/movies/movieApiSlice";
 import {useEffect} from "react";
+import {useSaveTodoMutation} from "@/lib/features/todo/todoApiSlice";
 interface MovieDlgProps {
 
     open: boolean;
     handleClose: () => void;
     movieToEdit?:Movie;
 }
-
+function movieFormDataToMovie(data:MovieFormData):Movie{
+    return {
+        _id:data._id,
+        title:data.title,
+        year:data.year,
+        director:data.director,
+        genre: data.genre.map(g=>g.value)
+    }
+}
 export default function MovieDlg({
                                      open,
                                      handleClose,
                                      movieToEdit
                                  }:MovieDlgProps) {
+
+    const [saveMovie,saveMovieResult] = useSaveMovieMutation();
+    const [updateMovie,updateMovieResult] = useUpdateMovieMutation();
+
     let defaultGenre:Array<{value:string}> =[];
     if(movieToEdit?.genre){
         defaultGenre = movieToEdit.genre.map(g=>({'value':g}));
     }
 
-    console.log('MovieDlg movie to edit ',movieToEdit);
-
+   // console.log('MovieDlg movie to edit ',movieToEdit);
 
     let defaultMovieValues = {
         _id: movieToEdit?._id??'',
@@ -65,9 +77,30 @@ export default function MovieDlg({
         control,
         name: "genre"
     });
-    const onSubmit = (data:MovieFormData) => console.log('Movie data',data);
+    const onSubmit = (data:MovieFormData) => {
+        console.log('Movie data',data);
+        let movie:Movie = movieFormDataToMovie(data);
+        if(!data._id)
+        {
+            //save
+            console.log('Save movie');
+            delete movie._id;
+            delete movie.director._id;
+            saveMovie(movie).then(()=>{
+                handleClose();
+            })
+        }
+        else
+        {
+            console.log('Update movie');
+            updateMovie(movie).then(()=>{
+                handleClose();
+            })
+        }
+    }
+
     const onError = (errors:any) => console.log("Validation Failed:", errors);
-    console.log('errors ',errors);
+    //console.log('errors ',errors);
 
     const addGenreHandler = ()=>{
         append({

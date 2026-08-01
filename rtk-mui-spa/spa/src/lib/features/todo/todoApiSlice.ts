@@ -11,10 +11,10 @@ export interface Todo
 }
 export const todoApiSlice = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: BASE_API }),
-    refetchOnFocus: true,
-    reducerPath: "todoApi",
+    //refetchOnFocus: true,
+    reducerPath: "api",
     // Tag types are used for caching and invalidation.
-    tagTypes: ["Todos"],
+    tagTypes: ["Todos","Movies","Reviews"],
     endpoints: (build) => ({
 
         getTodos: build.query<Todo[], undefined>({

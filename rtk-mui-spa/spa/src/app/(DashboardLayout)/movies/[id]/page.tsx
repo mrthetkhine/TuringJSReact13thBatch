@@ -1,15 +1,20 @@
 'use client';
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
-import { useParams } from 'next/navigation'
+import {useParams, useRouter} from 'next/navigation'
 import * as React from "react";
-import { Movie } from "@/lib/features/movies/movieApiSlice";
-import { Review } from "@/lib/features/reviews/reviewApiSlice";
+import {Movie, useGetAllMoviesQuery} from "@/lib/features/movies/movieApiSlice";
+import {Review, useGetAllReviewByMovieIdQuery} from "@/lib/features/reviews/reviewApiSlice";
 import MovieDetailsUI from "../components/MovieDetailsUI";
 import Grid from "@mui/material/Grid";
 import ReviewUI from "../components/ReviewUI";
-
-const movie:Movie = {
+import ReviewDlg from "@/app/(DashboardLayout)/movies/components/ReviewDlg";
+import ConfirmDialog from "@/app/(DashboardLayout)/components/shared/ConfirmDialog";
+import {Button} from "@mui/material";
+import useDialog from "@/app/(DashboardLayout)/hooks/useDialog";
+import {useRef} from "react";
+import {movieApiSlice} from '@/lib/features/movies/movieApiSlice';
+/*const movie:Movie = {
     "_id": "6a26c339a2b14ed3784d1b00",
     "title": "The Terminator 2",
     "director": {
@@ -52,22 +57,87 @@ const reviews:Review[] = [
         "review": "Really good movie updated review for Odyssey",
 
     }
-];
+];*/
 export default function MovieDetailsPage()
 {
-    const params = useParams();
+
+    const {id} = useParams<{ id: string }>();
+    const { movie } = movieApiSlice.useGetAllMoviesQuery(undefined, {
+        selectFromResult: ({ data }) => ({
+            movie: data?.find((movie) => movie._id === id),
+        }),
+    });
+    const { data:reviews=[], isError, isLoading, isSuccess,refetch } = useGetAllReviewByMovieIdQuery(id);
+
+
+    const router = useRouter();
+    const {open, setOpen,handleClose} = useDialog();
+    const {open:reviewDlgOpen,
+        setOpen:reviewDlgSetOpen,
+        handleClose:reviewDlgHandleClose} = useDialog();
+
+    const reviewToEditRef = useRef<Review|undefined>(undefined);
+    const reviewToDeleteRef = useRef<Review|undefined>(undefined);
+    const onDeleteConfirm = ()=>{
+        console.log('Delete confirm ',reviewToDeleteRef.current);
+    }
+    const handleShowDeleteDlg =(review:Review) => {
+        reviewToDeleteRef.current = review;
+        setOpen(true);
+    };
+    const newReviewHandler = ()=>{
+        reviewToEditRef.current = undefined;
+        reviewDlgSetOpen(true);
+    }
+    const editHandler = (review:Review)=>{
+        console.log('Review to edit ',review);
+        reviewToEditRef.current =review;
+        reviewDlgSetOpen(true);
+    }
+    const handleBack=  ()=>{
+        router.push('/movies');
+    };
 
     return (
         <PageContainer title="Movies Page" description="this is Movies page">
             <DashboardCard title="Movies Page">
+
+                <Button variant="contained"
+                        type={"button"}
+                        onClick={handleBack}>
+                    Back
+                </Button>
+
                 <Grid container spacing={2}>
                     <Grid size={6}>
-                        <MovieDetailsUI movie={movie} />
+                        {
+                            movie && <MovieDetailsUI movie={movie as Movie} />
+                        }
+
 
                     </Grid>
                     <Grid size={6}>
+                        <ReviewDlg open={reviewDlgOpen}
+                                   reviewToEdit={reviewToEditRef.current}
+                                   handleClose={reviewDlgHandleClose}/>
+                        <ConfirmDialog
+                            title={"Delete Review"}
+                            content={"Are you sure you want to delete Review"}
+                            open={open}
+                            onConfirm={onDeleteConfirm}
+                            handleClose={handleClose} />
+                        <Button variant="contained"
+                                type={"button"}
+                                onClick={newReviewHandler}>
+                            New Review
+                        </Button>
                         {
-                            reviews.map(review=><ReviewUI key={review._id} review={review}/>)
+                            reviews.map(review=><ReviewUI
+                                key={review._id}
+                                review={review}
+                                editHandler={editHandler}
+                                handleShowDeleteDlg={handleShowDeleteDlg}
+                            />)
                         }
                     </Grid>
                 </Grid>

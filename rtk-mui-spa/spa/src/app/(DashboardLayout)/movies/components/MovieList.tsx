@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Movie } from '@/lib/features/movies/movieApiSlice';
+import { Movie, useDeleteMovieMutation } from '@/lib/features/movies/movieApiSlice';
 import { Button } from '@mui/material';
 import * as React from "react";
 import { useRouter } from 'next/navigation';
@@ -92,7 +92,11 @@ const movies:Movie[] = [
         ],
     }
 ]
-export default function MovieList() {
+interface MovieListProps{
+    movies:Movie[];
+}
+export default function MovieList({movies}:MovieListProps) {
+    const [deleteMovie,deleteMovieResult] =useDeleteMovieMutation();
     const router = useRouter();
     const {open, setOpen,handleClose} = useDialog();
     const {open:movieDlgOpen,
@@ -104,6 +108,10 @@ export default function MovieList() {
 
     const onDeleteConfirm = ()=>{
         console.log('Delete confirm ',movieToDeleteRef.current);
+        deleteMovie(movieToDeleteRef.current as Movie)
+            .then((data)=>{
+                console.log('Movie deleted successfully',data);
+            });
     }
     const handleShowDeleteDlg = (movie:Movie)=>{
         movieToDeleteRef.current = movie;
