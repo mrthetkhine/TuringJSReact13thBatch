@@ -14,6 +14,10 @@ interface ReviewUIProps
 export default function ReviewUI({review,editHandler,handleShowDeleteDlg}:ReviewUIProps)
 {
 
+    const [ratingValue, setRatingValue] = React.useState(review.rating);
+    React.useEffect(() => {
+        setRatingValue(review.rating);
+    },[review])
     return( <>
 
         <Card sx={{ mb: 3 }}>
@@ -21,7 +25,12 @@ export default function ReviewUI({review,editHandler,handleShowDeleteDlg}:Review
             <Typography gutterBottom variant="h6" component="div">
                 {review.review}
             </Typography>
-            <Rating name="half-rating" defaultValue={review.rating} precision={1} />
+            <Rating name="half-rating" value={ratingValue}
+                    precision={1}
+                    readOnly
+                    onChange={(event, newValue) => {
+                        setRatingValue(ratingValue);
+                    }}/>
         </CardContent>
         <CardActions>
             <IconButton aria-label="edit" color="primary">

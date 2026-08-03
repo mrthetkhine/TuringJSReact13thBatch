@@ -4,7 +4,7 @@ import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCa
 import {useParams, useRouter} from 'next/navigation'
 import * as React from "react";
 import {Movie, useGetAllMoviesQuery} from "@/lib/features/movies/movieApiSlice";
-import {Review, useGetAllReviewByMovieIdQuery} from "@/lib/features/reviews/reviewApiSlice";
+import {Review, useDeleteReviewMutation, useGetAllReviewByMovieIdQuery} from "@/lib/features/reviews/reviewApiSlice";
 import MovieDetailsUI from "../components/MovieDetailsUI";
 import Grid from "@mui/material/Grid";
 import ReviewUI from "../components/ReviewUI";
@@ -60,7 +60,6 @@ const reviews:Review[] = [
 ];*/
 export default function MovieDetailsPage()
 {
-
     const {id} = useParams<{ id: string }>();
     const { movie } = movieApiSlice.useGetAllMoviesQuery(undefined, {
         selectFromResult: ({ data }) => ({
@@ -68,7 +67,7 @@ export default function MovieDetailsPage()
         }),
     });
     const { data:reviews=[], isError, isLoading, isSuccess,refetch } = useGetAllReviewByMovieIdQuery(id);
-
+    const [deleteReview,deleteReviewResult] = useDeleteReviewMutation();
 
     const router = useRouter();
     const {open, setOpen,handleClose} = useDialog();
@@ -78,8 +77,10 @@ export default function MovieDetailsPage()
 
     const reviewToEditRef = useRef<Review|undefined>(undefined);
     const reviewToDeleteRef = useRef<Review|undefined>(undefined);
+
     const onDeleteConfirm = ()=>{
         console.log('Delete confirm ',reviewToDeleteRef.current);
+        deleteReview(reviewToDeleteRef.current as Review);
     }
     const handleShowDeleteDlg =(review:Review) => {
         reviewToDeleteRef.current = review;
@@ -118,6 +119,7 @@ export default function MovieDetailsPage()
                     </Grid>
                     <Grid size={6}>
                         <ReviewDlg open={reviewDlgOpen}
+                                   movieId={id}
                                    reviewToEdit={reviewToEditRef.current}
                                    handleClose={reviewDlgHandleClose}/>
                         <ConfirmDialog

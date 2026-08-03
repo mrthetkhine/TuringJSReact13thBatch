@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Avatar,
   Box,
@@ -12,8 +12,14 @@ import {
 } from "@mui/material";
 
 import { IconListCheck, IconMail, IconUser } from "@tabler/icons-react";
+import { todoApiSlice } from '@/lib/features/todo/todoApiSlice';
+import {useAppDispatch} from "@/lib/hooks";
+import { logout } from "@/lib/features/auth/authSlice";
 
 const Profile = () => {
+  const dispatch = useAppDispatch();
+  const router =useRouter();
+
   const [anchorEl2, setAnchorEl2] = useState(null);
   const handleClick2 = (event: any) => {
     setAnchorEl2(event.currentTarget);
@@ -21,6 +27,12 @@ const Profile = () => {
   const handleClose2 = () => {
     setAnchorEl2(null);
   };
+  const handleLogout = ()=>{
+    console.log('handleLogout');
+    dispatch(todoApiSlice.util.resetApiState());
+    dispatch(logout());
+    router.push('/authentication/login');
+  }
 
   return (
     <Box>
@@ -83,11 +95,12 @@ const Profile = () => {
         </MenuItem>
         <Box mt={1} py={1} px={2}>
           <Button
-            href="/authentication/login"
+
             variant="outlined"
             color="primary"
-            component={Link}
             fullWidth
+            type={"button"}
+            onClick={handleLogout}
           >
             Logout
           </Button>

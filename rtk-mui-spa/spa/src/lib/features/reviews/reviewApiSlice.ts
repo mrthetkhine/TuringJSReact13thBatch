@@ -1,6 +1,5 @@
 import {todoApiSlice} from "@/lib/features/todo/todoApiSlice";
 import {ApiResponse} from "@/util/ApiResponse";
-import {Movie} from "@/lib/features/movies/movieApiSlice";
 
 export interface Review
 {
@@ -17,21 +16,21 @@ export const reviewApiSlice = todoApiSlice.injectEndpoints({
             transformResponse: (response: ApiResponse<Review[]>, meta, arg):Array<Review> =>response.data,
             providesTags: (result, error, id) => [{ type: "Reviews", id }],
         }),
-       /* saveMovie: build.mutation<ApiResponse<Movie>, Movie>({
-            query: (movie:Movie) =>({
-                url:  `/api/movies`,
+        saveReview: build.mutation<ApiResponse<Review>, Review>({
+            query: (review:Review) =>({
+                url:  `/api/reviews`,
                 method: 'POST',
-                body:movie,
+                body:review,
             }),
             //invalidatesTags: ['Todos'],
             //optimistic update
-            async onQueryStarted(movie, { dispatch, queryFulfilled }) {
-                console.log('saved Movie ',movie);
+            async onQueryStarted(review, { dispatch, queryFulfilled }) {
+                console.log('saved review ',review);
                 try {
-                    const { data: savedMovie } = await queryFulfilled
+                    const { data: savedReview } = await queryFulfilled
                     const saveResult = dispatch(
-                        movieApiSlice.util.updateQueryData('getAllMovies', undefined, (draft) => {
-                            draft.push(savedMovie.data);
+                        reviewApiSlice.util.updateQueryData('getAllReviewByMovieId', review.movie, (draft) => {
+                            draft.push(savedReview.data);
                             return draft;
                         }),
                     )
@@ -41,18 +40,18 @@ export const reviewApiSlice = todoApiSlice.injectEndpoints({
             },
         }),
         //optimistic update
-        updateMovie: build.mutation<ApiResponse<Movie>, Movie>({
-            query: (movie:Movie) =>({
-                url:  `/api/movies/${movie._id}`,
+        updateReview: build.mutation<ApiResponse<Review>, Review>({
+            query: (review:Review) =>({
+                url:  `/api/reviews/${review._id}`,
                 method: 'PUT',
-                body:movie,
+                body:review,
             }),
 
 
-            async onQueryStarted(movie, { dispatch, queryFulfilled }) {
+            async onQueryStarted(review, { dispatch, queryFulfilled }) {
                 const updateResult = dispatch(
-                    movieApiSlice.util.updateQueryData('getAllMovies', undefined, (draft) => {
-                        draft = draft.map(mv=>mv._id==movie._id?movie:mv);
+                    reviewApiSlice.util.updateQueryData('getAllReviewByMovieId', review.movie, (draft) => {
+                        draft = draft.map(r=>r._id==review._id?review:r);
                         return draft;
                     }),
                 )
@@ -64,17 +63,17 @@ export const reviewApiSlice = todoApiSlice.injectEndpoints({
             },
         }),
         //optimistic update
-        deleteMovie: build.mutation<ApiResponse<Movie>, Movie>({
-            query: (movie:Movie) =>({
-                url:  `/api/movies/${movie._id}`,
+        deleteReview: build.mutation<ApiResponse<Review>, Review>({
+            query: (review:Review) =>({
+                url:  `/api/reviews/${review._id}`,
                 method: 'DELETE',
             }),
             //invalidatesTags: ['Todos'],
 
-            async onQueryStarted(movie, { dispatch, queryFulfilled }) {
+            async onQueryStarted(review, { dispatch, queryFulfilled }) {
                 const deleteResult = dispatch(
-                    movieApiSlice.util.updateQueryData('getAllMovies', undefined, (draft) => {
-                        draft = draft.filter(mv=>mv._id!==movie._id);
+                    reviewApiSlice.util.updateQueryData('getAllReviewByMovieId', review.movie, (draft) => {
+                        draft = draft.filter(r=>r._id!==review._id);
                         return draft;
                     }),
                 )
@@ -84,12 +83,18 @@ export const reviewApiSlice = todoApiSlice.injectEndpoints({
                     deleteResult.undo()
                 }
             },
-        }),*/
+        }),
+       /*
+
+        */
     }),
 
     overrideExisting: false,
 })
 export const {
     useGetAllReviewByMovieIdQuery,
+    useSaveReviewMutation,
+    useUpdateReviewMutation,
+    useDeleteReviewMutation,
 
 } = reviewApiSlice;

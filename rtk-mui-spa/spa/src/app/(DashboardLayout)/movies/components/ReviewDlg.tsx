@@ -1,5 +1,5 @@
 
-import{Review} from '@/lib/features/reviews/reviewApiSlice';
+import{Review, useSaveReviewMutation, useUpdateReviewMutation} from '@/lib/features/reviews/reviewApiSlice';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {Controller, useForm } from 'react-hook-form';
 import{reviewSchema,ReviewFormData} from "@/lib/schema/reviewSchema";
@@ -15,15 +15,20 @@ import {useEffect} from "react";
 interface ReviewDlgProps {
 
     open: boolean;
+    movieId:string;
     handleClose: () => void;
     reviewToEdit?:Review;
 }
 export default function ReviewDlg({
     open,
+    movieId,
     handleClose,
     reviewToEdit
                                   }:ReviewDlgProps)
 {
+    const [saveReview,saveReviewResult] = useSaveReviewMutation();
+    const [updateReview,updateReviewResult ]= useUpdateReviewMutation();
+
     const defaultReviewValues  = {
         _id: reviewToEdit?._id??'',
         review:  reviewToEdit?.review??'',
@@ -46,9 +51,30 @@ export default function ReviewDlg({
         console.log('default movie value ',defaultReviewValues);
         reset(defaultReviewValues);
     }, [reviewToEdit]);
-    const onSubmit = (data:ReviewFormData) => console.log('Review data',data);
+    const onSubmit = (data:ReviewFormData) => {
+        console.log('Review data', data);
+        let review: Review = {
+            ...data,
+            movie:movieId,
+        }
+        if(!review._id)
+        {
+            //Save
+            delete review._id;
+            console.log('Save Review ',review);
+            saveReview(review);
+            handleClose();
+        }
+        else
+        {
+            //update
+            console.log('Update Review ',review);
+            updateReview(review);
+            handleClose();
+        }
+    };
     const onError = (errors:any) => console.log("Validation Failed:", errors);
-    console.log('errors ',errors);
+    //console.log('errors ',errors);
     const handleCancel=()=>{
         reset();
         handleClose();
