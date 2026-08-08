@@ -44,7 +44,8 @@ export const makeStore = () => {
     },*/
   });
 };
-export const persistor = persistStore(makeStore());
+export const store = makeStore();
+export const persistor = persistStore(store);
 // Infer the return type of `makeStore`
 export type AppStore = ReturnType<typeof makeStore>;
 // Infer the `AppDispatch` type from the store itself
