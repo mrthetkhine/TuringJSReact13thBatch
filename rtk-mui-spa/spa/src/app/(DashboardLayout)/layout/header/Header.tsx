@@ -5,6 +5,7 @@ import Link from 'next/link';
 // components
 import Profile from './Profile';
 import { IconBellRinging, IconMenu } from '@tabler/icons-react';
+import useAuth from "@/lib/hooks/useAuth";
 
 interface ItemType {
   toggleMobileSidebar:  (event: React.MouseEvent<HTMLElement>) => void;
@@ -30,6 +31,7 @@ const Header = ({toggleMobileSidebar}: ItemType) => {
     color: theme.palette.text.secondary,
   }));
 
+  const isAuth = useAuth();
   return (
     <AppBarStyled position="sticky" color="default">
       <ToolbarStyled>
@@ -61,12 +63,20 @@ const Header = ({toggleMobileSidebar}: ItemType) => {
 
         </IconButton>
         <Box flexGrow={1} />
-        <Stack spacing={1} direction="row" alignItems="center">
-          <Button variant="contained" component={Link} href="/authentication/login"   disableElevation color="primary" >
-            Login
-          </Button>
-          <Profile />
-        </Stack>
+          <Stack spacing={1} direction="row" alignItems="center">
+            {
+                !isAuth  &&
+
+              <Button variant="contained" component={Link} href="/authentication/login"   disableElevation color="primary" >
+                Login
+              </Button>
+
+            }
+            {
+                isAuth &&  <Profile />
+            }
+
+          </Stack>
       </ToolbarStyled>
     </AppBarStyled>
   );

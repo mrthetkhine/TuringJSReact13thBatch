@@ -8,6 +8,7 @@ import RecentTransactions from '@/app/(DashboardLayout)/components/dashboard/Rec
 import ProductPerformance from '@/app/(DashboardLayout)/components/dashboard/ProductPerformance';
 import Blog from '@/app/(DashboardLayout)/components/dashboard/Blog';
 import MonthlyEarnings from '@/app/(DashboardLayout)/components/dashboard/MonthlyEarnings';
+import withAuth from '@/lib/features/auth/withAuth';
 
 const Dashboard = () => {
   return (
@@ -57,5 +58,5 @@ const Dashboard = () => {
     </PageContainer>
   );
 }
-
-export default Dashboard;
+const AuthDashboard = withAuth(Dashboard);
+export default AuthDashboard;

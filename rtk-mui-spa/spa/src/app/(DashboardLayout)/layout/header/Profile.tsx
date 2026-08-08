@@ -15,6 +15,7 @@ import { IconListCheck, IconMail, IconUser } from "@tabler/icons-react";
 import { todoApiSlice } from '@/lib/features/todo/todoApiSlice';
 import {useAppDispatch} from "@/lib/hooks";
 import { logout } from "@/lib/features/auth/authSlice";
+import {movieApiSlice} from "@/lib/features/movies/movieApiSlice";
 
 const Profile = () => {
   const dispatch = useAppDispatch();
@@ -29,8 +30,12 @@ const Profile = () => {
   };
   const handleLogout = ()=>{
     console.log('handleLogout');
-    dispatch(todoApiSlice.util.resetApiState());
+
+    //dispatch(movieApiSlice.util.resetApiState());
     dispatch(logout());
+    dispatch(todoApiSlice.util.resetApiState());
+
+
     router.push('/authentication/login');
   }
 

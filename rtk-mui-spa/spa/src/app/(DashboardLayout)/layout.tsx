@@ -3,6 +3,7 @@ import { styled, Container, Box } from "@mui/material";
 import React, { useState, Activity } from "react";
 import Header from "@/app/(DashboardLayout)/layout/header/Header";
 import Sidebar from "@/app/(DashboardLayout)/layout/sidebar/Sidebar";
+import withAuth from "@/lib/features/auth/withAuth";
 
 const MainWrapper = styled("div")(() => ({
   display: "flex",
@@ -23,7 +24,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function RootLayout({
+function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -70,3 +71,5 @@ export default function RootLayout({
     </MainWrapper>
   );
 }
+const AuthLayout = withAuth(RootLayout);
+export default AuthLayout;

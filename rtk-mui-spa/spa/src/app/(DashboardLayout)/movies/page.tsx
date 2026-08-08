@@ -4,12 +4,16 @@ import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCa
 import MovieList from './components/MovieList';
 import * as React from "react";
 import {useGetAllMoviesQuery} from "@/lib/features/movies/movieApiSlice";
+import useAuth from "@/lib/hooks/useAuth";
+import withAuth from "@/lib/features/auth/withAuth";
 
-export default function RtkQueryPage()
+function MoviesPage()
 {
+    const isLogined = useAuth();
     const { data:movies=[], isError, isLoading, isSuccess,refetch } = useGetAllMoviesQuery(undefined,{
-        //pollingInterval: 3000,
+        skip:!isLogined
     });
+    console.log('Movies Page render');
     return (
         <PageContainer title="Movies Page" description="this is Movies page">
             <DashboardCard title="Movies Page">
@@ -18,3 +22,5 @@ export default function RtkQueryPage()
         </PageContainer>
     );
 }
+const AuthMovies = withAuth(MoviesPage);
+export default AuthMovies;

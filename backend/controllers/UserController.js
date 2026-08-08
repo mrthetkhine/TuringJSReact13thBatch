@@ -20,10 +20,10 @@ async function login(req,res){
     try
     {
         let user = req.body;
-        let token = await useService.loginUser(user);
+        let data = await useService.loginUser(user);
         res.json({
             message:'Login successful',
-            token
+            token : data.token
         })
     }
     catch(err){

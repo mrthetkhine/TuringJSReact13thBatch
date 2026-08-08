@@ -14,6 +14,7 @@ import {Button} from "@mui/material";
 import useDialog from "@/app/(DashboardLayout)/hooks/useDialog";
 import {useRef} from "react";
 import {movieApiSlice} from '@/lib/features/movies/movieApiSlice';
+import withAuth from "@/lib/features/auth/withAuth";
 /*const movie:Movie = {
     "_id": "6a26c339a2b14ed3784d1b00",
     "title": "The Terminator 2",
@@ -58,7 +59,7 @@ const reviews:Review[] = [
 
     }
 ];*/
-export default function MovieDetailsPage()
+function MovieDetailsPage()
 {
     const {id} = useParams<{ id: string }>();
     const { movie } = movieApiSlice.useGetAllMoviesQuery(undefined, {
@@ -148,3 +149,5 @@ export default function MovieDetailsPage()
         </PageContainer>
     );
 }
+const AuthMovieDetails = withAuth(MovieDetailsPage);
+export default AuthMovieDetails;

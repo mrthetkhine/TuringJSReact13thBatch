@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {BASE_API} from "@/util/config";
 import {ApiResponse} from "@/util/ApiResponse";
-
+import {RootState} from "@/lib/store";
 
 export interface Todo
 {
@@ -10,7 +10,24 @@ export interface Todo
     completed: boolean;
 }
 export const todoApiSlice = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: BASE_API }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: BASE_API,
+        prepareHeaders: (headers, { getState }) => {
+            console.log('Prepare header ',getState());
+            // 1. Pull token from Redux state (Recommended)
+            const token = (getState() as RootState).auth.token;
+            console.log('token ',token);
+            // 2. Alternatively, pull from localStorage if not using Redux state:
+            // const token = localStorage.getItem('token');
+
+            // If the token exists, attach it to the Authorization header
+            if (token) {
+                headers.set('authorization', `Bearer ${token}`);
+            }
+
+            return headers;
+        },}),
+
     //refetchOnFocus: true,
     reducerPath: "api",
     // Tag types are used for caching and invalidation.
