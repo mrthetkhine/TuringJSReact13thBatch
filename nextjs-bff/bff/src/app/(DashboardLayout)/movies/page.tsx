@@ -1,6 +1,6 @@
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
-import { getAllMovies } from "@/lib/api/movieApi";
+import { apiGetAllMovies } from "@/lib/api/movieApi";
 import {Typography} from "@mui/material";
 import MovieList from "./components/MovieList";
 import Button from "@mui/material/Button";
@@ -9,7 +9,7 @@ import MovieEntry from "@/app/(DashboardLayout)/movies/components/MovieEntry";
 
 export default async function MoviesPage()
 {
-    const movies = await getAllMovies();
+    const movies = await apiGetAllMovies();
 
     return(
         <PageContainer title="Movies Page" description="Movies page">

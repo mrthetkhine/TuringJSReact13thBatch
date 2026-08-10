@@ -10,6 +10,8 @@ import { Button } from '@mui/material';
 import * as React from "react";
 import {Movie} from '@/lib/types';
 import EditMovieButton from "@/app/(DashboardLayout)/movies/components/EidtMovieButton";
+import DeleteMovieButton from "@/app/(DashboardLayout)/movies/components/DeleteMovieButton";
+import Link from 'next/link';
 interface MovieListProps{
     movies:Movie[];
 }
@@ -44,9 +46,12 @@ export default function MovieList({
                             <TableCell align="right">
                                 <EditMovieButton  movie={movie}/>
                                 &nbsp;
-                                <Button variant="contained" type={"button"} >Delete</Button>
+                                <DeleteMovieButton movie={movie}/>
                                 &nbsp;
-                                <Button variant="contained" type={"button"} >Details</Button>
+                                {/*<Button variant="contained" type={"button"} >Details</Button>*/}
+                                <Link href={`/movies/${movie._id}`} passHref >
+                                    <Button variant="contained" type={"button"}>Details</Button>
+                                </Link>
                             </TableCell>
                         </TableRow>
                     ))}

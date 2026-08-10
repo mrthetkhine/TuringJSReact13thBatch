@@ -13,6 +13,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import{movieSchema,MovieFormData} from "@/lib/schema/movieSchema";
 import {Movie} from '@/lib/types';
 import {useEffect} from "react";
+import {saveOrUpdateMovieAction} from "@/lib/actions/movieAction";
 
 interface MovieDlgProps {
 
@@ -20,22 +21,14 @@ interface MovieDlgProps {
     handleClose: () => void;
     movieToEdit?:Movie;
 }
-function movieFormDataToMovie(data:MovieFormData):Movie{
-    return {
-        _id:data._id,
-        title:data.title,
-        year:data.year,
-        director:data.director,
-        genre: data.genre.map(g=>g.value)
-    }
-}
+
 export default function MovieDlg({
                                      open,
                                      handleClose,
                                      movieToEdit
                                  }:MovieDlgProps) {
 
-
+    const [pending,setPending] = React.useState(false);
     let defaultGenre:Array<{value:string}> =[];
     if(movieToEdit?.genre){
         defaultGenre = movieToEdit.genre.map(g=>({'value':g}));
@@ -66,9 +59,9 @@ export default function MovieDlg({
         defaultValues: defaultMovieValues
     })
     useEffect(() => {
-        console.log('MovieDlg useEffect ',movieToEdit);
+        //console.log('MovieDlg useEffect ',movieToEdit);
 
-        console.log('default movie value ',defaultMovieValues);
+        //console.log('default movie value ',defaultMovieValues);
         reset(defaultMovieValues);
     }, [movieToEdit]);
     const { fields:genreFields, append, remove } = useFieldArray<MovieFormData>({
@@ -77,23 +70,37 @@ export default function MovieDlg({
     });
     const onSubmit = (data:MovieFormData) => {
         console.log('Movie data',data);
-        let movie:Movie = movieFormDataToMovie(data);
-        if(!data._id)
+
+        let movie:any = data;
+        //movie.genre = data.genre.map(g=>g.value);
+        if(!movie._id)
         {
             //save
-            console.log('Save movie');
+            console.log('Save movie ',data);
+
             delete movie._id;
             delete movie.director._id;
-            /*saveMovie(movie).then(()=>{
-                handleClose();
-            })*/
+            setPending(true)
+            saveOrUpdateMovieAction(movie)
+                .then(resp=>{
+                    console.log('Successfully saved movie ',resp);
+                    handleClose();
+                    reset();
+                    setPending(false);
+                });
+
         }
         else
         {
             console.log('Update movie');
-            /*updateMovie(movie).then(()=>{
-                handleClose();
-            })*/
+            setPending(true);
+            saveOrUpdateMovieAction(movie)
+                .then(resp=>{
+                    console.log('Successfully update movie ',resp);
+                    handleClose();
+                    reset();
+                    setPending(false);
+                });
         }
     }
 
@@ -116,7 +123,11 @@ export default function MovieDlg({
                     fullWidth={true}
                     maxWidth="lg"
             >
-                <DialogTitle> New Movie</DialogTitle>
+                <DialogTitle>
+                    {
+                        movieToEdit?'Update Movie':'New Movie'
+                    }
+                </DialogTitle>
                 <DialogContent>
                     <form onSubmit={handleSubmit(onSubmit,onError)} id="subscription-form">
                     <Box >
@@ -184,8 +195,10 @@ export default function MovieDlg({
                         </div>
                         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                             <Button onClick={handleCancel} type={"button"}>Cancel</Button>
-                            <Button type="submit" variant={"contained"}>
-                                Save
+                            <Button type="submit" variant={"contained"} disabled={pending} >
+                                {
+                                    movieToEdit?'Update':'Save'
+                                }
                             </Button>
                         </Box>
 
