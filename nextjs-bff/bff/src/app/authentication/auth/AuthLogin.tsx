@@ -8,9 +8,16 @@ import {
   Stack,
   Checkbox,
 } from "@mui/material";
-import Link from "next/link";
+
 
 import CustomTextField from "@/app/(DashboardLayout)/components/forms/theme-elements/CustomTextField";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {AuthFormData, authSchema} from "@/lib/schema/authSchema";
+
+import {useRouter} from "next/navigation";
+import {useSearchParams} from 'next/navigation';
+import {loginAction} from "@/lib/actions/authAction";
 
 interface loginType {
   title?: string;
@@ -18,81 +25,99 @@ interface loginType {
   subtext?: React.ReactNode;
 }
 
-const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
-  <>
+const AuthLogin = ({title, subtitle, subtext}: loginType) => {
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get('redirectUrl');
+  // URL: /dashboard?search=my-project&sort=asc
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: {errors},
+  } = useForm<AuthFormData>({
+    resolver: zodResolver(authSchema),
+    mode: "onTouched",
+  })
+  const onSubmit = (data: AuthFormData) => {
+    console.log('Auth data', data);
+    loginAction(data)
+        .then(resp=>{
+          console.log('Auth data', resp);
+        },err=>{
+          console.log('Auth error', err);
+        });
+  }
+  const onError = (errors: any) => console.log("Validation Failed:", errors);
+  return (<>
     {title ? (
-      <Typography fontWeight="700" variant="h2" mb={1}>
-        {title}
-      </Typography>
+        <Typography fontWeight="700" variant="h2" mb={1}>
+          {title}
+        </Typography>
     ) : null}
 
     {subtext}
 
     <Stack>
-      <Box>
-        <Typography
-          variant="subtitle1"
-          fontWeight={600}
-          component="label"
-          htmlFor="username"
-          mb="5px"
-        >
-          Username
-        </Typography>
-        <CustomTextField variant="outlined" fullWidth />
-      </Box>
-      <Box mt="25px">
-        <Typography
-          variant="subtitle1"
-          fontWeight={600}
-          component="label"
-          htmlFor="password"
-          mb="5px"
-        >
-          Password
-        </Typography>
-        <CustomTextField type="password" variant="outlined" fullWidth />
-      </Box>
-      <Stack
-        justifyContent="space-between"
-        direction="row"
-        alignItems="center"
-        my={2}
-      >
-        <FormGroup>
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
-            label="Remeber this Device"
+      <form onSubmit={handleSubmit(onSubmit, onError)} id="subscription-form">
+        <Box>
+
+          <Typography
+              variant="subtitle1"
+              fontWeight={600}
+              component="label"
+              htmlFor="username"
+              mb="5px"
+
+          >
+            Username
+          </Typography>
+          <CustomTextField variant="outlined" fullWidth
+                           {...register("username")}
+                           error={!!errors.username}
+                           helperText={errors.username?.message}
           />
-        </FormGroup>
-        <Typography
-          component={Link}
-          href="/"
-          fontWeight="500"
-          sx={{
-            textDecoration: "none",
-            color: "primary.main",
-          }}
+        </Box>
+        <Box mt="25px">
+          <Typography
+              variant="subtitle1"
+              fontWeight={600}
+              component="label"
+              htmlFor="password"
+              mb="5px"
+          >
+            Password
+          </Typography>
+          <CustomTextField type="password" variant="outlined" fullWidth
+                           {...register("password")}
+                           error={!!errors.password}
+                           helperText={errors.password?.message}/>
+        </Box>
+        <Stack
+            justifyContent="space-between"
+            direction="row"
+            alignItems="center"
+            my={2}
         >
-          Forgot Password ?
-        </Typography>
-      </Stack>
+          <Box>
+            <Button
+                color="primary"
+                variant="contained"
+                size="large"
+                fullWidth
+                type="submit"
+            >
+              Log In
+            </Button>
+          </Box>
+        </Stack>
+      </form>
     </Stack>
-    <Box>
-      <Button
-        color="primary"
-        variant="contained"
-        size="large"
-        fullWidth
-        component={Link}
-        href="/"
-        type="submit"
-      >
-        Sign In
-      </Button>
-    </Box>
     {subtitle}
-  </>
-);
+  </>);
+}
 
 export default AuthLogin;

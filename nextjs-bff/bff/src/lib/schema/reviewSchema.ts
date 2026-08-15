@@ -3,6 +3,8 @@ export const reviewSchema = z.object({
     _id: z
         .string()
         .optional(),
+    movie: z
+        .string(),
     review: z
         .string()
         .min(3, "Review must be at least 3 characters")

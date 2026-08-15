@@ -5,7 +5,8 @@ import MovieDetailsUI from "./components/MovieDetailsUI";
 import {Button} from "@mui/material";
 import Link from "next/link";
 import * as React from "react";
-
+import ReviewList from "./components/ReviewList";
+import { Suspense } from 'react';
 interface MovieDetailsPageProps {
     params: Promise<{ id: string }>;
 }
@@ -21,11 +22,15 @@ export default async function MovieDetailsPage({params}: MovieDetailsPageProps)
                 </Link>
                 <Grid container spacing={2}>
                     <Grid size={6}>
-                        <MovieDetailsUI id={id} />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <MovieDetailsUI id={id} />
+                        </Suspense>
 
                     </Grid>
                     <Grid size={6}>
-                        Review
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ReviewList movieId={id} />
+                        </Suspense>
                     </Grid>
                 </Grid>
             </DashboardCard>

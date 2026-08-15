@@ -1,6 +1,10 @@
 const reviewService = require("../services/ReviewService");
 const util = require("./../util/AppError");
 
+async function delay(ms)
+{
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 async function getAllReview(req,res)
 {
     let reviews = await reviewService.getAllReview();
@@ -11,6 +15,7 @@ async function getAllReview(req,res)
 }
 async function getAllReviewByMovieId(req,res)
 {
+    await delay(1000);
     let movieId= req.params.movieId;
     let reviews = await reviewService.getAllReviewByMovieId(movieId);
     res.json({

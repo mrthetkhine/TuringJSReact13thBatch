@@ -26,3 +26,13 @@ export interface Todo
     title: string;
     completed: boolean;
 }
+export interface AuthUser
+{
+    username: string;
+    password: string;
+}
+export interface AuthResponse
+{
+    message: string;
+    token: string;
+}
