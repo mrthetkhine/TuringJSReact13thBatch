@@ -4,10 +4,12 @@ import {apiLogin} from "@/lib/api/authApi";
 import { AuthUser } from "../types";
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation';
+
 export async function loginAction(authFormData:AuthFormData):Promise<any>
 {
     const validateAuthForm = authSchema.safeParse(authFormData);
     console.log('validateMovieForm', validateAuthForm);
+    let redirectUrl = '/'
     if(validateAuthForm.success)
     {
         let data:any = validateAuthForm.data;
@@ -24,7 +26,13 @@ export async function loginAction(authFormData:AuthFormData):Promise<any>
                 path: '/', // Accessible across the whole site
                 maxAge: 60 * 60 * 24 * 7 // Valid for 1 week
             })
-            redirect('/');
+            let rUrl = cookieStore.get('redirectUrl');
+            if(rUrl)
+            {
+                redirectUrl= rUrl.value;
+                cookieStore.delete('redirectUrl');
+            }
+            redirect(redirectUrl);
             return authResponse;
         }
         catch(err){

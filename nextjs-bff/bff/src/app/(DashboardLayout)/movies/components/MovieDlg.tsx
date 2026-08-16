@@ -59,9 +59,6 @@ export default function MovieDlg({
         defaultValues: defaultMovieValues
     })
     useEffect(() => {
-        //console.log('MovieDlg useEffect ',movieToEdit);
-
-        //console.log('default movie value ',defaultMovieValues);
         reset(defaultMovieValues);
     }, [movieToEdit]);
     const { fields:genreFields, append, remove } = useFieldArray<MovieFormData>({

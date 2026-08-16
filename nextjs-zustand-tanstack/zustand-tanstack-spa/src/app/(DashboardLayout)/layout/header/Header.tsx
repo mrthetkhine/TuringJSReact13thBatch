@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Box, AppBar, Toolbar, styled, Stack, IconButton, Badge, Button } from '@mui/material';
 import PropTypes from 'prop-types';
@@ -9,14 +8,9 @@ import { IconBellRinging, IconMenu } from '@tabler/icons-react';
 
 interface ItemType {
   toggleMobileSidebar:  (event: React.MouseEvent<HTMLElement>) => void;
-  isAuth:boolean;
 }
 
-const Header =  ({
-                   toggleMobileSidebar,
-                   isAuth
-}: ItemType) => {
-  console.log('Header component');
+const Header = ({toggleMobileSidebar}: ItemType) => {
 
   // const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   // const lgDown = useMediaQuery((theme) => theme.breakpoints.down('lg'));
@@ -68,12 +62,9 @@ const Header =  ({
         </IconButton>
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
-          {
-            !isAuth && <Button variant="contained" component={Link} href="/authentication/login"   disableElevation color="primary" >
-                Login
-              </Button>
-          }
-
+          <Button variant="contained" component={Link} href="/authentication/login"   disableElevation color="primary" >
+            Login
+          </Button>
           <Profile />
         </Stack>
       </ToolbarStyled>

@@ -8,8 +8,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="spa" />
-    <orderEntry type="module" module-name="zustand-tanstack-spa" />
-    <orderEntry type="module" module-name="nextjs-zustand-transactquery" />
   </component>
 </module>

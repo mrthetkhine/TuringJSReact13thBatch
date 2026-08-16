@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/backend.iml" filepath="$PROJECT_DIR$/.idea/backend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../nextjs-bff/bff/.idea/bff.iml" filepath="$PROJECT_DIR$/../nextjs-bff/bff/.idea/bff.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../TuringReact12thBatch/nextjs-bff/package/.idea/package.iml" filepath="$PROJECT_DIR$/../../TuringReact12thBatch/nextjs-bff/package/.idea/package.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../TuringReact12thBatch/nextjs-zustand-transactquery/.idea/nextjs-zustand-transactquery.iml" filepath="$PROJECT_DIR$/../../TuringReact12thBatch/nextjs-zustand-transactquery/.idea/nextjs-zustand-transactquery.iml" />
       <module fileurl="file://$PROJECT_DIR$/../rtk-mui-spa/spa/.idea/spa.iml" filepath="$PROJECT_DIR$/../rtk-mui-spa/spa/.idea/spa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../nextjs-zustand-tanstack/zustand-tanstack-spa/.idea/zustand-tanstack-spa.iml" filepath="$PROJECT_DIR$/../nextjs-zustand-tanstack/zustand-tanstack-spa/.idea/zustand-tanstack-spa.iml" />
     </modules>
   </component>
 </project>
