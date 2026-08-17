@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -16,22 +17,31 @@
     "@mui/icons-material": "^7.3.5",
     "@mui/lab": "^7.0.1-beta.19",
     "@mui/material": "^7.3.5",
+    "@mui/material-nextjs": "^9.3.0",
+    "@mui/system": "^9.3.0",
     "@tabler/icons-react": "^3.35.0",
+    "@tanstack/react-query": "^5.101.4",
+    "@tanstack/react-query-devtools": "^5.101.4",
     "@types/node": "^24.10.1",
     "apexcharts": "5.3.6",
+    "axios": "^1.19.0",
     "eslint": "9.39.1",
     "eslint-config-next": "16.0.3",
+    "immer": "^11.1.17",
     "lodash": "^4.17.21",
     "next": "^16.0.3",
+    "prop-types": "^15.8.1",
     "react": "^19.2.0",
     "react-apexcharts": "1.8.0",
     "react-dom": "^19.2.0",
     "react-mui-sidebar": "^1.6.10",
     "react-syntax-highlighter": "^16.1.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "zustand": "^5.0.11"
   },
   "devDependencies": {
     "@types/lodash": "4.17.20",
+    "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
     "@types/react-syntax-highlighter": "^15.5.13"

@@ -50,39 +50,41 @@ const ecoCard = [
 
 const Blog = () => {
   return (
-    <Grid container spacing={3}>
-      {ecoCard.map((product, index) => (
-        <Grid
-          key={index}
-          size={{
-            xs: 12,
-            md: 4,
-            lg: 3,
-          }}
-        >
-          <BlankCard>
-            <Typography component={Link} href="/">
-              <Avatar
-                src={product.photo}
-                variant="square"
-                sx={{
-                  height: 250,
-                  width: "100%",
+      <Grid container spacing={3}>
+        {ecoCard.map((product, index) => (
+            <Grid
+                key={index}
+                size={{
+                  xs: 12,
+                  md: 4,
+                  lg: 3,
                 }}
-              />
-            </Typography>
-            <Tooltip title="Add To Cart">
-              <Fab
-                size="small"
-                color="primary"
-                sx={{ bottom: "75px", right: "15px", position: "absolute" }}
-              >
-                <IconBasket size="16" />
-              </Fab>
-            </Tooltip>
-            <CardContent sx={{ p: 3, pt: 2 }}>
-              <Typography variant="h6">{product.title}</Typography>
-              <Stack
+            >
+              <BlankCard>
+                <Typography component={Link} href="/">
+                  <Avatar
+                      src={product.photo}
+                      variant="square"
+                      sx={{
+                        height: 250,
+                        width: "100%",
+                      }}
+                  />
+                </Typography>
+                <Tooltip title="Add To Cart">
+                  <Fab
+                      size="small"
+                      color="primary"
+                      sx={{ bottom: "75px", right: "15px", position: "absolute" }}
+                  >
+                    <IconBasket size="16" />
+                  </Fab>
+                </Tooltip>
+                <CardContent sx={{ p: 3, pt: 2 }}>
+                  <Typography variant="h6">{product.title}</Typography>
+
+
+                  {/*<Stack
                 direction="row"
                 alignItems="center"
                 justifyContent="space-between"
@@ -104,12 +106,12 @@ const Blog = () => {
                   value={product.rating}
                   readOnly
                 />
-              </Stack>
-            </CardContent>
-          </BlankCard>
-        </Grid>
-      ))}
-    </Grid>
+              </Stack>*/}
+                </CardContent>
+              </BlankCard>
+            </Grid>
+        ))}
+      </Grid>
   );
 };
 

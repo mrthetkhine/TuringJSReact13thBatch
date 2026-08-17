@@ -23,6 +23,12 @@ const Menuitems = [
     href: "/",
   },
   {
+    id: uniqueId(),
+    title: "Todos",
+    icon: IconLayoutDashboard,
+    href: "/todos2",
+  },
+  {
     navlabel: true,
     subheader: "UTILITIES",
   },
