@@ -1,10 +1,3 @@
-export interface Todo
-{
-    _id?: string;
-    id?:number;
-    title: string;
-    completed?: boolean;
-}
 export interface Director
 {
     _id?: string;
@@ -19,7 +12,6 @@ export interface Movie
     year:number;
     genre:string[];
 }
-
 export interface Review
 {
     _id?: string;
@@ -27,4 +19,20 @@ export interface Review
     rating: number;
     review: string;
 
+}
+export interface Todo
+{
+    _id?: string;
+    title: string;
+    completed: boolean;
+}
+export interface AuthUser
+{
+    username: string;
+    password: string;
+}
+export interface AuthResponse
+{
+    message: string;
+    token: string;
 }
