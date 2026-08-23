@@ -14,8 +14,10 @@ import ConfirmDialog from "@/app/(DashboardLayout)/components/shared/ConfirmDial
 import {Button} from "@mui/material";
 import useDialog from "@/app/(DashboardLayout)/hooks/useDialog";
 import {useRef} from "react";
+import {useGetMovieById} from "@/app/lib/hooks/movieHook";
+import {useGetAllReviewByMovieId,useDeleteReview} from "@/app/lib/hooks/reviewHook";
 
-const movie:Movie = {
+/*const movie:Movie = {
     "_id": "6a26c339a2b14ed3784d1b00",
     "title": "The Terminator 2",
     "director": {
@@ -59,19 +61,15 @@ const reviews:Review[] = [
         "review": "Really good movie updated review for Odyssey",
 
     }
-];
+];*/
 function MovieDetailsPage()
 {
     const {id} = useParams<{ id: string }>();
 
-   /* const { movie } = movieApiSlice.useGetAllMoviesQuery(undefined, {
-        selectFromResult: ({ data }) => ({
-            movie: data?.find((movie) => movie._id === id),
-        }),
-    });
-    const { data:reviews=[], isError, isLoading, isSuccess,refetch } = useGetAllReviewByMovieIdQuery(id);
-    const [deleteReview,deleteReviewResult] = useDeleteReviewMutation();
-*/
+    const {movie} = useGetMovieById(id);
+    const {data:reviews} = useGetAllReviewByMovieId(id);
+    const {mutate:deleteReview} = useDeleteReview();
+
     const router = useRouter();
     const {open, setOpen,handleClose} = useDialog();
     const {open:reviewDlgOpen,
@@ -83,7 +81,7 @@ function MovieDetailsPage()
 
     const onDeleteConfirm = ()=>{
         console.log('Delete confirm ',reviewToDeleteRef.current);
-        //deleteReview(reviewToDeleteRef.current as Review);
+        deleteReview(reviewToDeleteRef.current as Review);
     }
     const handleShowDeleteDlg =(review:Review) => {
         reviewToDeleteRef.current = review;
@@ -137,7 +135,7 @@ function MovieDetailsPage()
                             New Review
                         </Button>
                         {
-                            reviews.map(review=><ReviewUI
+                           reviews && reviews.map(review=><ReviewUI
                                 key={review._id}
                                 review={review}
                                 editHandler={editHandler}

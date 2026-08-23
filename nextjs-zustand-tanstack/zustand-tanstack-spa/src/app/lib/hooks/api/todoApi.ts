@@ -5,20 +5,20 @@ import {ApiResponse} from "@/app/lib/ApiResponse";
 export async function apiLoadAllTodos({queryKey}: {queryKey:any}  ):Promise<Todo[]>
 {
     console.log("apiLoadAllTodos ",queryKey);
-    let response = await axiosInstance.get<ApiResponse<Todo[]>>(`/todos`);
+    let response = await axiosInstance.get<ApiResponse<Todo[]>>(`/api/todos`);
     let json = await response.data;
     return json.data;
 }
 export async function apiSaveTodo(todo:Partial<Todo> ):Promise<Todo>
 {
 
-    let response = await axiosInstance.post<ApiResponse<Todo>>(`/todos`,todo);
+    let response = await axiosInstance.post<ApiResponse<Todo>>(`/api/todos`,todo);
     let json = await response.data;
     return json.data;
 }
 export async function apiDeleteTodoById(id:string):Promise<Todo>
 {
-    let response = await axiosInstance.delete<ApiResponse<Todo>>(`/todos/${id}`,);
+    let response = await axiosInstance.delete<ApiResponse<Todo>>(`/api/todos/${id}`,);
     let json = await response.data;
     return json.data;
 }

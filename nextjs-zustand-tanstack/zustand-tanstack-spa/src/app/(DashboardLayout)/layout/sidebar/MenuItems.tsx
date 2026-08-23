@@ -6,6 +6,7 @@ import {
   IconMoodHappy,
   IconTypography,
   IconUserPlus,
+  IconMovie,
 } from "@tabler/icons-react";
 
 import { uniqueId } from "lodash";
@@ -21,6 +22,12 @@ const Menuitems = [
     title: "Dashboard",
     icon: IconLayoutDashboard,
     href: "/",
+  },
+  {
+    id: uniqueId(),
+    title: "Movies",
+    icon: IconMovie,
+    href: "/movies",
   },
   {
     id: uniqueId(),

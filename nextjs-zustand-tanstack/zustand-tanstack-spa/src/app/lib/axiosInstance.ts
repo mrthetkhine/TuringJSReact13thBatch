@@ -1,6 +1,6 @@
 'use client';
 import axios from 'axios';
-//import {useBoundStore} from "@/stores/useBoundStore";
+import {useBoundStore} from "@/app/stores/useBoundStore";
 
 
 const axiosInstance = axios.create({
@@ -8,13 +8,12 @@ const axiosInstance = axios.create({
     /*timeout: 10000,*/
 });
 
-/*
+
 axiosInstance.interceptors.request.use(
     async (config) => {
         //console.log('Axios interceptor enter');
         const {token} = useBoundStore.getState();
-        //console.log('Axios interceptor',auth);
-
+        //console.log('Axios interceptor',token);
 
         if(token)
         {
@@ -29,6 +28,5 @@ axiosInstance.interceptors.request.use(
         return Promise.reject(error);
     }
 );
-*/
 
 export default axiosInstance;

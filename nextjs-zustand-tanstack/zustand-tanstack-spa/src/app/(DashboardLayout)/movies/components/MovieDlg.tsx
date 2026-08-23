@@ -14,6 +14,7 @@ import{movieSchema,MovieFormData} from "@/app/lib/schema/movieSchema";
 
 import {useEffect} from "react";
 import { Movie } from "@/app/lib/types";
+import {useSaveMovie,useUpdateMovie} from "@/app/lib/hooks/movieHook";
 
 interface MovieDlgProps {
 
@@ -36,8 +37,9 @@ export default function MovieDlg({
                                      movieToEdit
                                  }:MovieDlgProps) {
 
-    //const [saveMovie,saveMovieResult] = useSaveMovieMutation();
-    //const [updateMovie,updateMovieResult] = useUpdateMovieMutation();
+    const {mutate:saveMovie} = useSaveMovie();
+    const {mutate:updateMovie} = useUpdateMovie();
+   ;
 
     let defaultGenre:Array<{value:string}> =[];
     if(movieToEdit?.genre){
@@ -84,19 +86,21 @@ export default function MovieDlg({
         if(!data._id)
         {
             //save
-            console.log('Save movie');
+            console.log('Save movie ',movie);
             delete movie._id;
             delete movie.director._id;
-           /* saveMovie(movie).then(()=>{
-                handleClose();
-            })*/
+
+            saveMovie(movie);
+            handleClose();
+
+
         }
         else
         {
-            console.log('Update movie');
-           /* updateMovie(movie).then(()=>{
-                handleClose();
-            })*/
+            console.log('Update movie ',movie);
+            updateMovie(movie);
+            handleClose();
+
         }
     }
 

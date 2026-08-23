@@ -14,6 +14,7 @@ import useDialog from '../../hooks/useDialog';
 import { useRef } from 'react';
 import MovieDlg from './MovieDlg';
 import { Movie } from '@/app/lib/types';
+import { useDeleteMovie } from '@/app/lib/hooks/movieHook';
 
 function createData(
     name: string,
@@ -97,8 +98,9 @@ interface MovieListProps{
     movies:Movie[];
 }
 export default function MovieList({movies}:MovieListProps) {
-   // const [deleteMovie,deleteMovieResult] =useDeleteMovieMutation();
+     const {mutate:deleteMovie} =useDeleteMovie();
     const router = useRouter();
+
     const {open, setOpen,handleClose} = useDialog();
     const {open:movieDlgOpen,
             setOpen:moveDlgSetOpen,
@@ -109,10 +111,8 @@ export default function MovieList({movies}:MovieListProps) {
 
     const onDeleteConfirm = ()=>{
         console.log('Delete confirm ',movieToDeleteRef.current);
-       /* deleteMovie(movieToDeleteRef.current as Movie)
-            .then((data) => {
-                console.log('Movie deleted successfully', data);
-            });*/
+        deleteMovie(movieToDeleteRef.current as Movie);
+
     }
     const handleShowDeleteDlg = (movie:Movie)=>{
         movieToDeleteRef.current = movie;

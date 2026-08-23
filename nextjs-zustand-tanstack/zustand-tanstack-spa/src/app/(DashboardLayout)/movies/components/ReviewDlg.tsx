@@ -13,6 +13,7 @@ import DialogActions from "@mui/material/DialogActions";
 import * as React from "react";
 import {useEffect} from "react";
 import { Review } from '@/app/lib/types';
+import {useSaveReview,useUpdateReview} from '@/app/lib/hooks/reviewHook';
 interface ReviewDlgProps {
 
     open: boolean;
@@ -27,8 +28,9 @@ export default function ReviewDlg({
     reviewToEdit
                                   }:ReviewDlgProps)
 {
-    //const [saveReview,saveReviewResult] = useSaveReviewMutation();
-    //const [updateReview,updateReviewResult ]= useUpdateReviewMutation();
+    const {mutate:saveReview} = useSaveReview();
+    const {mutate:updateReview} = useUpdateReview();
+
 
     const defaultReviewValues  = {
         _id: reviewToEdit?._id??'',
@@ -63,14 +65,14 @@ export default function ReviewDlg({
             //Save
             delete review._id;
             console.log('Save Review ',review);
-            //saveReview(review);
+            saveReview(review);
             handleClose();
         }
         else
         {
             //update
             console.log('Update Review ',review);
-            //updateReview(review);
+            updateReview(review);
             handleClose();
         }
     };

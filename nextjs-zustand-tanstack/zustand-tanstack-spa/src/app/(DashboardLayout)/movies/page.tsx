@@ -6,7 +6,9 @@ import * as React from "react";
 import useAuth from "@/app/lib/hooks/useAuth";
 import withAuth from "@/app/lib/hoc/withAuth";
 import { Movie } from "@/app/lib/types";
-
+import {useLoadAllTodos} from "@/app/lib/hooks/todoHook";
+import {useLoadAllMovies} from "@/app/lib/hooks/movieHook";
+/*
 const movies:Movie[] = [
     {
         "_id": "6a25501651612f72429d43c4",
@@ -96,20 +98,22 @@ const movies:Movie[] = [
             "Sci-Fi"
         ],
 
-    }
+
 ];
+*/
+
 function MoviesPage()
 {
     const isLogined = useAuth();
-   /* const { data:movies=[], isError, isLoading, isSuccess,refetch } = useGetAllMoviesQuery(undefined,{
-        skip:!isLogined
-    });*/
+    const { isPending, isError, data, error } = useLoadAllMovies();
 
     console.log('Movies Page render');
     return (
         <PageContainer title="Movies Page" description="this is Movies page">
             <DashboardCard title="Movies Page">
-                <MovieList movies={movies} />
+                {
+                    data && <MovieList movies={data} />
+                }
             </DashboardCard>
         </PageContainer>
     );
