@@ -1,6 +1,6 @@
 
 import {AuthResponse, AuthUser} from "@/app/lib/types";
-import {Todo, TodoSlice, TodoState} from "@/app/stores/todo/todoSlice";
+import {queryClient} from '@/app/lib/hooks/queryClient';
 import {StateCreator} from "zustand/index";
 import {RootState} from "@/app/stores/useBoundStore";
 
@@ -58,6 +58,7 @@ export const createAuthSlice:StateCreator<
                 state.token= '';
                 return state;
             },false,'auth/logout');
+            queryClient.clear();
         },
 
 

@@ -43,10 +43,10 @@ const AuthLogin = ({title, subtitle, subtext}: loginType) => {
     mode: "onTouched",
   })
   const onSubmit = (data: AuthFormData) => {
-    console.log('Auth data', data);
+    //console.log('Auth data', data);
     login(data)
         .then(response => {
-          console.log('Login response ', response);
+         // console.log('Login response ', response);
           if(redirectUrl)
           {
             router.push(redirectUrl);

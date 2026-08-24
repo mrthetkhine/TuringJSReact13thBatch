@@ -1,7 +1,7 @@
-
+import {useBoundStore} from '@/app/stores/useBoundStore';
 
 export default function useAuth()
 {
-    const isAuth =true;
-    return !!isAuth;
+    const {token} =useBoundStore();
+    return !!token;
 }
